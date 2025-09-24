@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: medical-diagnosis-web
+    env: node
+    rootDir: project/server
+    buildCommand: npm ci && cd .. && npm ci && npm run build && cd server
+    startCommand: node index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: JWT_SECRET
+        generateValue: true
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: app-data
+      mountPath: /data
+      sizeGB: 1
