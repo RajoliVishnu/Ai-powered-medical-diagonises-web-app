@@ -12,9 +12,3 @@ services:
         generateValue: true
       - key: STRIPE_SECRET_KEY
         sync: false
-      - key: DATA_DIR
-        value: /data
-    disk:
-      name: app-data
-      mountPath: /data
-      sizeGB: 1
