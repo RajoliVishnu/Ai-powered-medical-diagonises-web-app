@@ -1,17 +1,9 @@
 services:
   - type: web
     name: medical-diagnosis-web
-    env: node
+    env: static
     rootDir: project
     buildCommand: npm ci && npm run build
-    startCommand: npm run preview
-    envVars:
-      - key: NODE_VERSION
-        value: 18
-      - key: NODE_ENV
-        value: production
-      - key: VITE_API_URL
-        value: https://medical-diagnosis-web.onrender.com
     staticPublishPath: ./dist
     headers:
       - path: /*
@@ -23,3 +15,9 @@ services:
       - path: /*
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
+      - path: /static/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
