@@ -226,63 +226,62 @@ const Home: React.FC = () => {
       </section>
 
       {/* Disease Categories Section */}
-      <section id="diseases" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Health Check Options</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+      <section id="diseases" className="py-8 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Health Check Options</h2>
+            <p className="text-xs text-gray-600 max-w-xl mx-auto">
               Choose from our comprehensive range of AI-powered diagnostic tools
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-3 max-w-4xl mx-auto">
             {diseases.map((disease) => (
-              <div key={disease.id} className="group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="relative h-48 overflow-hidden">
+              <div key={disease.id} className="group relative overflow-hidden bg-white rounded-md shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5">
+                <div className="relative h-24 overflow-hidden">
                   <img
                     src={disease.image}
                     alt={disease.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-r ${disease.color} opacity-80`}></div>
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full">
-                      <disease.icon className="h-8 w-8 text-white" />
+                  <div className="absolute top-2 right-2">
+                    <div className="bg-white/20 backdrop-blur-sm p-1.5 rounded-full">
+                      <disease.icon className="h-4 w-4 text-white" />
                     </div>
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{disease.name}</h3>
-                  <p className="text-gray-600 mb-4">{disease.description}</p>
+                <div className="p-3">
+                  <h3 className="text-sm font-bold text-gray-900 mb-1">{disease.name}</h3>
+                  <p className="text-xs text-gray-600 mb-2 line-clamp-1">{disease.description}</p>
                   
-                  {/* Process Steps */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-2">Process:</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {disease.steps.map((step, index) => (
-                        <div key={index} className="flex items-center text-sm text-gray-600">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                          {step}
+                  {/* Process Steps - Ultra Compact */}
+                  <div className="mb-3">
+                    <div className="flex flex-wrap gap-1">
+                      {disease.steps.slice(0, 2).map((step, index) => (
+                        <div key={index} className="flex items-center text-xs text-gray-600">
+                          <div className="w-1 h-1 bg-blue-400 rounded-full mr-1"></div>
+                          <span className="text-xs">{step.split(' ')[0]}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-1">
                     <Link
                       to={`/diagnosis/${disease.id}`}
-                      className="flex items-center justify-center py-3 px-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all group-hover:shadow-lg text-sm"
+                      className="flex items-center justify-center py-1 px-1.5 bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded text-xs font-bold hover:from-blue-600 hover:to-teal-600 transition-all duration-200 hover:scale-105 shadow-sm"
                     >
-                      <span>Quick Check</span>
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      <span>Quick</span>
+                      <ArrowRight className="h-2 w-2 ml-0.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                     <Link
                       to={`/comprehensive-diagnosis/${disease.id}`}
-                      className="flex items-center justify-center py-3 px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all group-hover:shadow-lg text-sm"
+                      className="flex items-center justify-center py-1 px-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded text-xs font-bold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 hover:scale-105 shadow-sm"
                     >
-                      <span>Comprehensive</span>
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      <span>Full</span>
+                      <ArrowRight className="h-2 w-2 ml-0.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -293,24 +292,24 @@ const Home: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose MediCare AI?</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Choose MediCare AI?</h2>
+            <p className="text-sm text-gray-600 max-w-xl mx-auto">
               Experience the future of healthcare with our comprehensive medical platform
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
             {features.map((feature, index) => (
-              <div key={index} className="text-center p-6 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="bg-gradient-to-r from-blue-600 to-teal-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <feature.icon className="h-8 w-8 text-white" />
+              <div key={index} className="text-center p-3 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+                <div className="bg-gradient-to-r from-blue-600 to-teal-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <feature.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 mb-3">{feature.description}</p>
-                <div className="text-sm text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full inline-block">
+                <h3 className="text-sm font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-xs text-gray-600 mb-2">{feature.description}</p>
+                <div className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full inline-block">
                   {feature.benefit}
                 </div>
               </div>
@@ -320,40 +319,40 @@ const Home: React.FC = () => {
       </section>
 
       {/* Payment Options Section */}
-      <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
+      <section className="py-8 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Easy Payment Options</h2>
-          <p className="text-lg text-gray-600 mb-8">Pay securely using your preferred method</p>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Easy Payment Options</h2>
+          <p className="text-sm text-gray-600 mb-4">Pay securely using your preferred method</p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
             {[
               { name: 'UPI Payment', icon: '📱', desc: 'Google Pay, PhonePe, Paytm' },
               { name: 'Credit/Debit Card', icon: '💳', desc: 'Visa, Mastercard, RuPay' },
               { name: 'Net Banking', icon: '🏦', desc: 'All major banks' },
               { name: 'Digital Wallets', icon: '💰', desc: 'Paytm, Amazon Pay' }
             ].map((payment, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                <div className="text-3xl mb-2">{payment.icon}</div>
-                <h4 className="font-semibold text-gray-900 mb-1">{payment.name}</h4>
+              <div key={index} className="bg-white p-2 rounded shadow-sm">
+                <div className="text-2xl mb-1">{payment.icon}</div>
+                <h4 className="font-semibold text-gray-900 mb-0.5 text-xs">{payment.name}</h4>
                 <p className="text-xs text-gray-600">{payment.desc}</p>
               </div>
             ))}
           </div>
           
-          <div className="bg-white p-6 rounded-xl shadow-lg">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Transparent Pricing</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600">₹299</div>
-                <div className="text-gray-600">AI Health Check</div>
+          <div className="bg-white p-3 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Transparent Pricing</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
+              <div className="p-2 bg-blue-50 rounded">
+                <div className="text-lg font-bold text-blue-600">₹299</div>
+                <div className="text-gray-600 text-xs">AI Health Check</div>
               </div>
-              <div className="p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">₹999</div>
-                <div className="text-gray-600">Doctor Consultation</div>
+              <div className="p-2 bg-green-50 rounded">
+                <div className="text-lg font-bold text-green-600">₹999</div>
+                <div className="text-gray-600 text-xs">Doctor Consultation</div>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg">
-                <div className="text-2xl font-bold text-purple-600">₹1,299</div>
-                <div className="text-gray-600">Complete Package</div>
+              <div className="p-2 bg-purple-50 rounded">
+                <div className="text-lg font-bold text-purple-600">₹1,299</div>
+                <div className="text-gray-600 text-xs">Complete Package</div>
               </div>
             </div>
           </div>

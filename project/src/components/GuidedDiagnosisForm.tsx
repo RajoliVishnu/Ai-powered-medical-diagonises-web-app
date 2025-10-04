@@ -125,12 +125,12 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
     const guide = fieldGuides[field.name];
     
     return (
-      <div key={index} className={`p-6 rounded-lg border-2 transition-all ${
+      <div key={index} className={`p-1 rounded border transition-all ${
         isCompleted ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'
       }`}>
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-1">
           <div className="flex-1">
-            <label className="block text-lg font-semibold text-gray-900 mb-2">
+            <label className="block text-xs font-semibold text-gray-900 mb-0.5">
               {field.label}
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -140,25 +140,25 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
             <button
               type="button"
               onClick={() => setShowGuide(showGuide === field.name ? null : field.name)}
-              className="ml-4 p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
+              className="ml-1 p-0.5 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
               title="Get help understanding this field"
             >
-              <HelpCircle className="h-5 w-5" />
+              <HelpCircle className="h-2 w-2" />
             </button>
           )}
         </div>
 
         {guide && showGuide === field.name && (
-          <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mb-2 p-2 bg-blue-50 rounded border border-blue-200">
             <div className="flex items-start">
-              <Info className="h-6 w-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+              <Info className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-blue-900 mb-2">{guide.title}</h4>
-                <p className="text-blue-800 mb-3">{guide.description}</p>
-                <ul className="space-y-1">
-                  {guide.examples.map((example, idx) => (
-                    <li key={idx} className="text-sm text-blue-700 flex items-start">
-                      <span className="text-blue-500 mr-2">•</span>
+                <h4 className="font-semibold text-blue-900 mb-1 text-xs">{guide.title}</h4>
+                <p className="text-blue-800 mb-2 text-xs">{guide.description}</p>
+                <ul className="space-y-0.5">
+                  {guide.examples.slice(0, 2).map((example, idx) => (
+                    <li key={idx} className="text-xs text-blue-700 flex items-start">
+                      <span className="text-blue-500 mr-1">•</span>
                       {example}
                     </li>
                   ))}
@@ -172,7 +172,7 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
           <select
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
+            className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-xs"
             required
             aria-label={field.label}
           >
@@ -189,15 +189,15 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors text-xs"
             required
           />
         )}
 
         {isCompleted && (
-          <div className="flex items-center mt-3 text-green-600">
-            <CheckCircle className="h-4 w-4 mr-2" />
-            <span className="text-sm">Completed</span>
+          <div className="flex items-center mt-0.5 text-green-600">
+            <CheckCircle className="h-2 w-2 mr-0.5" />
+            <span className="text-xs">Done</span>
           </div>
         )}
       </div>
@@ -205,50 +205,50 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="bg-gradient-to-r from-red-500 to-pink-500 px-8 py-8 rounded-t-2xl">
+    <div className="max-w-5xl mx-auto">
+      <div className="bg-gradient-to-r from-red-500 to-pink-500 px-3 py-2 rounded-t-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full mr-6">
-              <Heart className="h-10 w-10 text-white" />
+            <div className="bg-white/20 backdrop-blur-sm p-1 rounded-full mr-2">
+              <Heart className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-white">Heart Disease Assessment</h1>
-              <p className="text-white/90 mt-2 text-lg">Guided assessment with explanations for each medical term</p>
+              <h1 className="text-lg font-bold text-white">Heart Disease Assessment</h1>
+              <p className="text-white/90 text-xs">Guided assessment with explanations for each medical term</p>
             </div>
           </div>
           <div className="text-right text-white">
-            <div className="text-sm opacity-75">Powered by</div>
-            <div className="font-bold text-lg">MediCare AI</div>
+            <div className="text-xs opacity-75">Powered by</div>
+            <div className="font-bold text-xs">MediCare AI</div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white p-8 rounded-b-2xl shadow-xl">
-        {/* Helpful Information for Remote Patients */}
-        <div className="mb-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+      <div className="bg-white p-2 rounded-b-lg shadow-md">
+        {/* Helpful Information for Remote Patients - Ultra Compact */}
+        <div className="mb-2 p-2 bg-blue-50 border border-blue-200 rounded">
           <div className="flex items-start">
-            <Info className="h-6 w-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+            <Info className="h-3 w-3 text-blue-600 mr-1 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold text-blue-900 mb-2">No access to medical tests? That's why you're here!</h3>
-              <p className="text-blue-800 mb-3">
+              <h3 className="font-semibold text-blue-900 mb-1 text-xs">No access to medical tests? That's why you're here!</h3>
+              <p className="text-blue-800 mb-1 text-xs">
                 We understand you're using this website because you don't have access to doctors or medical facilities. This AI system is designed to help you:
               </p>
-              <ul className="text-sm text-blue-700 space-y-1">
+              <ul className="text-xs text-blue-700 space-y-0">
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-blue-500 mr-1">•</span>
                   <strong>No medical equipment needed:</strong> Select "Don't know" for any test values you don't have
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-blue-500 mr-1">•</span>
                   <strong>Focus on what you know:</strong> Your symptoms, family history, and lifestyle are most important
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-blue-500 mr-1">•</span>
                   <strong>AI will assess risk:</strong> Based on available information and medical knowledge
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-blue-500 mr-1">•</span>
                   <strong>Get guidance:</strong> Understand your health situation and when to seek medical help
                 </li>
               </ul>
@@ -256,41 +256,41 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="mb-8">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-              <span>Complete the assessment</span>
-              <span>{Object.keys(formData).length}/{fields.length} fields completed</span>
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <div className="mb-2">
+            <div className="flex items-center justify-between text-xs text-gray-600 mb-0.5">
+              <span>Complete assessment</span>
+              <span>{Object.keys(formData).length}/{fields.length}</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-3">
+            <div className="w-full bg-gray-200 rounded-full h-1.5">
               <div 
-                className="bg-gradient-to-r from-red-500 to-pink-500 h-3 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-red-500 to-pink-500 h-1.5 rounded-full transition-all duration-300"
                 style={{ width: `${(Object.keys(formData).length / fields.length) * 100}%` }}
               ></div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {fields.map((field, index) => renderField(field, index))}
+          <div className="grid grid-cols-2 gap-2">
+            {fields.slice(0, 6).map((field, index) => renderField(field, index))}
           </div>
 
-          <div className="pt-6 border-t border-gray-200">
+          <div className="pt-2 border-t border-gray-200">
             <button
               type="submit"
-              disabled={isLoading || Object.keys(formData).length < fields.length}
-              className="w-full py-4 px-6 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg"
+              disabled={isLoading || Object.keys(formData).length < 6}
+              className="w-full py-1.5 px-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded font-semibold hover:opacity-90 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-sm text-xs"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
-                  Analyzing with AI...
+                  <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1"></div>
+                  Analyzing...
                 </div>
               ) : (
                 'Get AI Diagnosis'
               )}
             </button>
-            <p className="text-center text-sm text-gray-500 mt-2">
-              Your data is encrypted and secure. Results in 30 seconds.
+            <p className="text-center text-xs text-gray-500 mt-0.5">
+              Secure & encrypted. Results in 30 seconds.
             </p>
           </div>
         </form>

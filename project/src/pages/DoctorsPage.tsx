@@ -207,10 +207,10 @@ const DoctorsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
         {/* Header with Smart Recommendations */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-2">
+          <h1 className="text-lg font-bold text-gray-900 mb-0.5">
             {recommendedCategory ? (
               <>
                 Recommended <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Specialists</span>
@@ -221,40 +221,40 @@ const DoctorsPage: React.FC = () => {
               </>
             )}
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xs text-gray-600 max-w-md mx-auto">
             {recommendedCategory 
-              ? `Based on your health assessment, we've found the best specialists for your condition`
-              : `Connect with board-certified specialists who provide personalized care and expert medical guidance`
+              ? `Best specialists for your condition`
+              : `Board-certified specialists for personalized care`
             }
           </p>
           
           {recommendedCategory && (
-            <div className="mt-6 inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-100 to-blue-100 rounded-full border border-green-200">
-              {React.createElement(getDiseaseIcon(recommendedCategory), { className: "h-5 w-5 text-green-600 mr-2" })}
-              <span className="text-green-800 font-medium">
-                Showing specialists for your {recommendedCategory} health assessment
+            <div className="mt-1 inline-flex items-center px-2 py-0.5 bg-gradient-to-r from-green-100 to-blue-100 rounded-full border border-green-200">
+              {React.createElement(getDiseaseIcon(recommendedCategory), { className: "h-2 w-2 text-green-600 mr-1" })}
+              <span className="text-green-800 font-medium text-xs">
+                {recommendedCategory} specialists
               </span>
             </div>
           )}
         </div>
 
         {/* Enhanced Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white p-4 rounded-xl shadow-lg text-center">
-            <div className="text-2xl font-bold text-blue-600">{sortedDoctors.length}</div>
-            <div className="text-sm text-gray-600">Available Doctors</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 mb-2">
+          <div className="bg-white p-1 rounded shadow-sm text-center">
+            <div className="text-xs font-bold text-blue-600">{sortedDoctors.length}</div>
+            <div className="text-xs text-gray-600">Available</div>
           </div>
-          <div className="bg-white p-4 rounded-xl shadow-lg text-center">
-            <div className="text-2xl font-bold text-green-600">4.8+</div>
-            <div className="text-sm text-gray-600">Average Rating</div>
+          <div className="bg-white p-1 rounded shadow-sm text-center">
+            <div className="text-xs font-bold text-green-600">4.8+</div>
+            <div className="text-xs text-gray-600">Rating</div>
           </div>
-          <div className="bg-white p-4 rounded-xl shadow-lg text-center">
-            <div className="text-2xl font-bold text-orange-600">24/7</div>
-            <div className="text-sm text-gray-600">Support Available</div>
+          <div className="bg-white p-1 rounded shadow-sm text-center">
+            <div className="text-xs font-bold text-orange-600">24/7</div>
+            <div className="text-xs text-gray-600">Support</div>
           </div>
-          <div className="bg-white p-4 rounded-xl shadow-lg text-center">
-            <div className="text-2xl font-bold text-purple-600">₹1,200</div>
-            <div className="text-sm text-gray-600">Average Fee</div>
+          <div className="bg-white p-1 rounded shadow-sm text-center">
+            <div className="text-xs font-bold text-purple-600">₹1,200</div>
+            <div className="text-xs text-gray-600">Average</div>
           </div>
         </div>
 
@@ -288,14 +288,14 @@ const DoctorsPage: React.FC = () => {
         </div>
 
         {/* Enhanced Doctors Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {sortedDoctors.map((doctor, index) => (
-            <div key={doctor.id} className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 ${
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+          {sortedDoctors.slice(0, 6).map((doctor, index) => (
+            <div key={doctor.id} className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden transform hover:-translate-y-1 ${
               recommendedCategory && doctor.category === recommendedCategory ? 'ring-2 ring-green-400 ring-opacity-50' : ''
             }`}>
               {/* Recommended Badge */}
               {recommendedCategory && doctor.category === recommendedCategory && index < 2 && (
-                <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white text-center py-2 text-sm font-medium">
+                <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white text-center py-1 text-xs font-medium">
                   ⭐ Recommended for You
                 </div>
               )}
@@ -304,58 +304,57 @@ const DoctorsPage: React.FC = () => {
                 <img
                   src={doctor.image}
                   alt={doctor.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-16 object-cover"
                 />
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium ${
+                <div className={`absolute top-0.5 right-0.5 px-1 py-0.5 rounded-full text-xs font-medium ${
                   doctor.availability.includes('Today') 
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-yellow-100 text-yellow-800'
                 }`}>
                   {doctor.availability}
                 </div>
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-0.5 left-0.5">
                   {React.createElement(getDiseaseIcon(doctor.category), { 
-                    className: "h-8 w-8 text-white bg-black bg-opacity-30 p-1 rounded-full" 
+                    className: "h-2 w-2 text-white bg-black bg-opacity-30 p-0.5 rounded-full" 
                   })}
                 </div>
               </div>
 
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">{doctor.name}</h3>
+              <div className="p-1">
+                <div className="flex items-center justify-between mb-0.5">
+                  <h3 className="text-xs font-bold text-gray-900">{doctor.name}</h3>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-medium text-gray-700 ml-1">
+                    <Star className="h-2 w-2 text-yellow-400 fill-current" />
+                    <span className="text-xs font-medium text-gray-700 ml-0.5">
                       {doctor.rating} ({doctor.reviews})
                     </span>
                   </div>
                 </div>
 
-                <p className="text-blue-600 font-semibold mb-2">{doctor.specialty}</p>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">{doctor.bio}</p>
+                <p className="text-blue-600 font-semibold mb-0.5 text-xs">{doctor.specialty}</p>
+                <p className="text-gray-600 text-xs mb-0.5 line-clamp-1">{doctor.bio}</p>
 
                 {/* Enhanced Details */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Award className="h-4 w-4 mr-2 text-orange-500" />
-                    {doctor.experience} experience
+                <div className="space-y-0.5 mb-0.5">
+                  <div className="flex items-center text-xs text-gray-600">
+                    <Award className="h-2 w-2 mr-1 text-orange-500" />
+                    {doctor.experience} exp
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="h-4 w-4 mr-2 text-red-500" />
+                  <div className="flex items-center text-xs text-gray-600">
+                    <MapPin className="h-2 w-2 mr-1 text-red-500" />
                     {doctor.location}
                   </div>
-                  <div className="flex items-center text-sm text-green-600 font-medium">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    Next: {doctor.nextAvailable}
+                  <div className="flex items-center text-xs text-green-600 font-medium">
+                    <Calendar className="h-2 w-2 mr-1" />
+                    {doctor.nextAvailable}
                   </div>
                 </div>
 
                 {/* Specializations */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Specializations:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {doctor.specializations.slice(0, 2).map((spec, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
+                <div className="mb-0.5">
+                  <div className="flex flex-wrap gap-0.5">
+                    {doctor.specializations.slice(0, 1).map((spec, idx) => (
+                      <span key={idx} className="px-1 py-0.5 bg-blue-50 text-blue-700 text-xs rounded">
                         {spec}
                       </span>
                     ))}
@@ -363,48 +362,47 @@ const DoctorsPage: React.FC = () => {
                 </div>
 
                 {/* Languages */}
-                <div className="mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Users className="h-4 w-4 mr-2" />
-                    <span>Languages: {doctor.languages.join(', ')}</span>
+                <div className="mb-0.5">
+                  <div className="flex items-center text-xs text-gray-600">
+                    <Users className="h-2 w-2 mr-1" />
+                    <span>{doctor.languages.slice(0, 1).join(', ')}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200 mb-4">
+                <div className="flex items-center justify-between pt-0.5 border-t border-gray-200 mb-0.5">
                   <div>
-                    <span className="text-2xl font-bold text-gray-900">{doctor.fee}</span>
-                    <span className="text-gray-600 text-sm">/consultation</span>
+                    <span className="text-xs font-bold text-gray-900">{doctor.fee}</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <CheckCircle className="h-4 w-4 mr-1 text-green-500" />
-                    Verified
+                  <div className="flex items-center text-xs text-gray-500">
+                    <CheckCircle className="h-1.5 w-1.5 mr-0.5 text-green-500" />
+                    <span className="text-xs">✓</span>
                   </div>
                 </div>
 
                 {/* Enhanced Action Buttons */}
-                <div className="space-y-3">
+                <div className="space-y-0.5">
                   <button
                     onClick={() => handleScheduleAppointment(doctor)}
-                    className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 flex items-center justify-center shadow-lg"
+                    className="w-full px-1 py-0.5 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded font-semibold hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 flex items-center justify-center shadow-sm text-xs"
                   >
-                    <Calendar className="h-4 w-4 mr-2" />
-                    Schedule Appointment
+                    <Calendar className="h-1.5 w-1.5 mr-0.5" />
+                    Book
                   </button>
                   
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-0.5">
                     <button
                       onClick={() => handleInstantCall(doctor, 'video')}
-                      className="px-3 py-2 border border-blue-600 text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-all flex items-center justify-center text-sm"
+                      className="px-0.5 py-0.5 border border-blue-600 text-blue-600 rounded font-medium hover:bg-blue-50 transition-all flex items-center justify-center text-xs"
                     >
-                      <Video className="h-4 w-4 mr-1" />
-                      Video Call
+                      <Video className="h-1.5 w-1.5 mr-0.5" />
+                      📹
                     </button>
                     <button
                       onClick={() => handleInstantCall(doctor, 'audio')}
-                      className="px-3 py-2 border border-green-600 text-green-600 rounded-lg font-medium hover:bg-green-50 transition-all flex items-center justify-center text-sm"
+                      className="px-0.5 py-0.5 border border-green-600 text-green-600 rounded font-medium hover:bg-green-50 transition-all flex items-center justify-center text-xs"
                     >
-                      <Phone className="h-4 w-4 mr-1" />
-                      Call Now
+                      <Phone className="h-1.5 w-1.5 mr-0.5" />
+                      📞
                     </button>
                   </div>
                 </div>

@@ -232,70 +232,69 @@ export const DiagnosisPage: React.FC = () => {
     handleSubmit(mockEvent);
   };
 
-  const IconComponent = disease.icon;
   const photoUrl = diseasePhotos[(diseaseId as string) || 'heart'] || diseasePhotos.heart;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-2 sm:px-4 py-2">
         <Link
           to="/"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-8 transition-colors"
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-2 transition-colors text-sm"
         >
-          <ArrowLeft className="h-5 w-5 mr-2" />
+          <ArrowLeft className="h-3 w-3 mr-1" />
           Back to Home
         </Link>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden">
           {!result ? (
             diseaseId === 'heart' ? (
               <GuidedDiagnosisForm onSubmit={handleGuidedFormSubmit} isLoading={isLoading} />
             ) : (
               <>
                 {/* Enhanced Header - Only show for non-heart diseases */}
-                <div className={`bg-gradient-to-r ${disease.color} px-8 py-8`}>
+                <div className={`bg-gradient-to-r ${disease.color} px-3 py-2`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <div className="bg-white/20 backdrop-blur-sm p-1 rounded-full mr-6">
-                        <img src={photoUrl} alt={`${disease.name} photo`} className="h-16 w-16 rounded-full object-cover border-2 border-white/60" />
+                      <div className="bg-white/20 backdrop-blur-sm p-1 rounded-full mr-2">
+                        <img src={photoUrl} alt={`${disease.name} photo`} className="h-8 w-8 rounded-full object-cover border-2 border-white/60" />
                       </div>
                       <div>
-                        <h1 className="text-4xl font-bold text-white">{disease.name} Assessment</h1>
-                        <p className="text-white/90 mt-2 text-lg">AI-powered diagnostic analysis with 95% accuracy</p>
+                        <h1 className="text-lg font-bold text-white">{disease.name} Assessment</h1>
+                        <p className="text-white/90 text-xs">AI-powered diagnostic analysis with 95% accuracy</p>
                       </div>
                     </div>
                     <div className="text-right text-white">
-                      <div className="text-sm opacity-75">Powered by</div>
-                      <div className="font-bold text-lg">MediCare AI</div>
+                      <div className="text-xs opacity-75">Powered by</div>
+                      <div className="font-bold text-xs">MediCare AI</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-8">
-                  {/* Helpful Information for Remote Patients */}
-                  <div className="mb-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="p-2">
+                  {/* Helpful Information for Remote Patients - Ultra Compact */}
+                  <div className="mb-2 p-2 bg-blue-50 border border-blue-200 rounded">
                     <div className="flex items-start">
-                      <Info className="h-6 w-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                      <Info className="h-3 w-3 text-blue-600 mr-1 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-blue-900 mb-2">No access to medical tests? That's why you're here!</h3>
-                        <p className="text-blue-800 mb-3">
+                        <h3 className="font-semibold text-blue-900 mb-1 text-xs">No access to medical tests? That's why you're here!</h3>
+                        <p className="text-blue-800 mb-1 text-xs">
                           We understand you're using this website because you don't have access to doctors or medical facilities. This AI system is designed to help you:
                         </p>
-                        <ul className="text-sm text-blue-700 space-y-1">
+                        <ul className="text-xs text-blue-700 space-y-0">
                           <li className="flex items-start">
-                            <span className="text-blue-500 mr-2">•</span>
+                            <span className="text-blue-500 mr-1">•</span>
                             <strong>No medical equipment needed:</strong> Select "Don't know" for any test values you don't have
                           </li>
                           <li className="flex items-start">
-                            <span className="text-blue-500 mr-2">•</span>
+                            <span className="text-blue-500 mr-1">•</span>
                             <strong>Focus on what you know:</strong> Your symptoms, family history, and lifestyle are most important
                           </li>
                           <li className="flex items-start">
-                            <span className="text-blue-500 mr-2">•</span>
+                            <span className="text-blue-500 mr-1">•</span>
                             <strong>AI will assess risk:</strong> Based on available information and medical knowledge
                           </li>
                           <li className="flex items-start">
-                            <span className="text-blue-500 mr-2">•</span>
+                            <span className="text-blue-500 mr-1">•</span>
                             <strong>Get guidance:</strong> Understand your health situation and when to seek medical help
                           </li>
                         </ul>
@@ -303,25 +302,25 @@ export const DiagnosisPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-8">
+                  <form onSubmit={handleSubmit} className="space-y-2">
                     {/* Progress Indicator */}
-                    <div className="mb-8">
-                      <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                        <span>Complete the assessment</span>
-                        <span>{Object.keys(formData).length}/{disease.fields.length} fields completed</span>
+                    <div className="mb-2">
+                      <div className="flex items-center justify-between text-xs text-gray-600 mb-0.5">
+                        <span>Complete assessment</span>
+                        <span>{Object.keys(formData).length}/{disease.fields.length}</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-gray-200 rounded-full h-1.5">
                         <div 
-                          className={`bg-gradient-to-r ${disease.color} h-2 rounded-full transition-all duration-300`}
+                          className={`bg-gradient-to-r ${disease.color} h-1.5 rounded-full transition-all duration-300`}
                           style={{ width: `${(Object.keys(formData).length / disease.fields.length) * 100}%` }}
                         ></div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {disease.fields.map((field, index) => (
-                        <div key={index} className="space-y-2">
-                          <label className="block text-sm font-medium text-gray-700">
+                    <div className="grid grid-cols-2 gap-2">
+                      {disease.fields.slice(0, 6).map((field, index) => (
+                        <div key={index} className="space-y-1">
+                          <label className="block text-xs font-medium text-gray-700">
                             {field.label}
                             <span className="text-red-500 ml-1">*</span>
                           </label>
@@ -329,7 +328,7 @@ export const DiagnosisPage: React.FC = () => {
                             <select
                               value={formData[field.name] || ''}
                               onChange={(e) => handleInputChange(field.name, e.target.value)}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
+                              className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-xs"
                               required
                               aria-label={field.label}
                             >
@@ -346,7 +345,7 @@ export const DiagnosisPage: React.FC = () => {
                               placeholder={field.placeholder}
                               value={formData[field.name] || ''}
                               onChange={(e) => handleInputChange(field.name, e.target.value)}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                              className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors text-xs"
                               required
                             />
                           )}
@@ -357,19 +356,19 @@ export const DiagnosisPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-semibold text-center hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className="w-full py-1.5 px-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded font-semibold text-center hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-xs"
                     >
                       {isLoading ? (
                         <div className="flex items-center justify-center">
-                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
-                          Analyzing with AI...
+                          <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1"></div>
+                          Analyzing...
                         </div>
                       ) : (
                         'Get AI Diagnosis'
                       )}
                     </button>
-                    <p className="text-center text-sm text-gray-500 mt-2">
-                      Your data is encrypted and secure. Results in 30 seconds.
+                    <p className="text-center text-xs text-gray-500 mt-0.5">
+                      Secure & encrypted. Results in 30 seconds.
                     </p>
                   </form>
                 </div>

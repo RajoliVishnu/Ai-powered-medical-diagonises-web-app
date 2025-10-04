@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Heart, Clover as Liver, LucideKey as Kidney, Droplets, ArrowLeft, CheckCircle, AlertCircle, Users, Award, Star, Info, HelpCircle, Activity, Thermometer, Gauge, Zap, Calendar, DollarSign, Clock } from 'lucide-react';
+import { Heart, Clover as Liver, LucideKey as Kidney, Droplets, ArrowLeft, CheckCircle, AlertCircle, Users, Award, Star, Info, HelpCircle, Activity, Thermometer, Gauge, Zap } from 'lucide-react';
 
 interface DiseaseConfig {
   name: string;
@@ -582,27 +582,26 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
     navigate(`/doctors?category=${diseaseId}`);
   };
 
-  const IconComponent = disease.icon;
   const photoUrl = diseasePhotos[(diseaseId as string) || 'heart'] || diseasePhotos.heart;
 
   const renderField = (field: DiseaseConfig['fields'][0], index: number) => {
     const isCompleted = formData[field.name];
     
     return (
-      <div key={index} className={`p-6 rounded-lg border-2 transition-all ${
+      <div key={index} className={`p-1 rounded border transition-all ${
         isCompleted ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'
       }`}>
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-1">
           <div className="flex-1">
-            <label className="block text-lg font-semibold text-gray-900 mb-2">
+            <label className="block text-xs font-semibold text-gray-900 mb-0.5">
               {field.label}
-              {field.unit && <span className="text-sm text-gray-500 ml-2">({field.unit})</span>}
+              {field.unit && <span className="text-xs text-gray-500 ml-1">({field.unit})</span>}
               <span className="text-red-500 ml-1">*</span>
             </label>
             
             {field.normalRange && (
-              <p className="text-sm text-blue-600 mb-2">
-                Normal range: {field.normalRange}
+              <p className="text-xs text-blue-600 mb-0.5">
+                Normal: {field.normalRange}
               </p>
             )}
           </div>
@@ -611,25 +610,25 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowGuide(showGuide === field.name ? null : field.name)}
-              className="ml-4 p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
+              className="ml-1 p-0.5 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
               title="Get help understanding this field"
             >
-              <HelpCircle className="h-5 w-5" />
+              <HelpCircle className="h-2 w-2" />
             </button>
           )}
         </div>
 
         {field.guide && showGuide === field.name && (
-          <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mb-2 p-2 bg-blue-50 rounded border border-blue-200">
             <div className="flex items-start">
-              <field.guide.icon className="h-6 w-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+              <field.guide.icon className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-blue-900 mb-2">{field.guide.title}</h4>
-                <p className="text-blue-800 mb-3">{field.guide.description}</p>
-                <ul className="space-y-1">
-                  {field.guide.examples.map((example: string, idx: number) => (
-                    <li key={idx} className="text-sm text-blue-700 flex items-start">
-                      <span className="text-blue-500 mr-2">•</span>
+                <h4 className="font-semibold text-blue-900 mb-1 text-xs">{field.guide.title}</h4>
+                <p className="text-blue-800 mb-2 text-xs">{field.guide.description}</p>
+                <ul className="space-y-0.5">
+                  {field.guide.examples.slice(0, 2).map((example: string, idx: number) => (
+                    <li key={idx} className="text-xs text-blue-700 flex items-start">
+                      <span className="text-blue-500 mr-1">•</span>
                       {example}
                     </li>
                   ))}
@@ -643,7 +642,7 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
           <select
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
+            className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-xs"
             required
             aria-label={field.label}
           >
@@ -660,15 +659,15 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors text-xs"
             required
           />
         )}
 
         {isCompleted && (
-          <div className="flex items-center mt-3 text-green-600">
-            <CheckCircle className="h-4 w-4 mr-2" />
-            <span className="text-sm">Completed</span>
+          <div className="flex items-center mt-0.5 text-green-600">
+            <CheckCircle className="h-2 w-2 mr-0.5" />
+            <span className="text-xs">Done</span>
           </div>
         )}
       </div>
@@ -677,62 +676,62 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-2 sm:px-4 py-2">
         <Link
           to="/"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-8 transition-colors"
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-2 transition-colors text-sm"
         >
-          <ArrowLeft className="h-5 w-5 mr-2" />
+          <ArrowLeft className="h-3 w-3 mr-1" />
           Back to Home
         </Link>
 
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Enhanced Header */}
-          <div className={`bg-gradient-to-r ${disease.color} px-8 py-8`}>
+          <div className={`bg-gradient-to-r ${disease.color} px-3 py-2`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <div className="bg-white/20 backdrop-blur-sm p-1 rounded-full mr-6">
-                  <img src={photoUrl} alt={`${disease.name} photo`} className="h-16 w-16 rounded-full object-cover border-2 border-white/60" />
+                <div className="bg-white/20 backdrop-blur-sm p-1 rounded-full mr-2">
+                  <img src={photoUrl} alt={`${disease.name} photo`} className="h-8 w-8 rounded-full object-cover border-2 border-white/60" />
                 </div>
                 <div>
-                  <h1 className="text-4xl font-bold text-white">{disease.name}</h1>
-                  <p className="text-white/90 mt-2 text-lg">{disease.description}</p>
+                  <h1 className="text-lg font-bold text-white">{disease.name}</h1>
+                  <p className="text-white/90 text-xs">{disease.description}</p>
                 </div>
               </div>
               <div className="text-right text-white">
-                <div className="text-sm opacity-75">Powered by</div>
-                <div className="font-bold text-lg">MediCare AI</div>
+                <div className="text-xs opacity-75">Powered by</div>
+                <div className="font-bold text-xs">MediCare AI</div>
               </div>
             </div>
           </div>
 
-          <div className="p-8">
+          <div className="p-2">
             {!result ? (
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Disease Information */}
-                <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Info className="h-6 w-6 text-blue-600 mr-2" />
+              <form onSubmit={handleSubmit} className="space-y-2">
+                {/* Disease Information - Ultra Compact */}
+                <div className="bg-blue-50 p-2 rounded border border-blue-200">
+                  <h3 className="text-xs font-semibold text-gray-900 mb-1 flex items-center">
+                    <Info className="h-3 w-3 text-blue-600 mr-1" />
                     About {disease.name}
                   </h3>
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Common Symptoms</h4>
-                      <ul className="space-y-1">
-                        {disease.symptoms.map((symptom, index) => (
-                          <li key={index} className="text-sm text-gray-700 flex items-start">
-                            <span className="text-blue-500 mr-2">•</span>
+                      <h4 className="font-semibold text-gray-900 mb-0.5 text-xs">Symptoms</h4>
+                      <ul className="space-y-0">
+                        {disease.symptoms.slice(0, 2).map((symptom, index) => (
+                          <li key={index} className="text-xs text-gray-700 flex items-start">
+                            <span className="text-blue-500 mr-1">•</span>
                             {symptom}
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Risk Factors</h4>
-                      <ul className="space-y-1">
-                        {disease.riskFactors.map((factor, index) => (
-                          <li key={index} className="text-sm text-gray-700 flex items-start">
-                            <span className="text-orange-500 mr-2">•</span>
+                      <h4 className="font-semibold text-gray-900 mb-0.5 text-xs">Risk Factors</h4>
+                      <ul className="space-y-0">
+                        {disease.riskFactors.slice(0, 2).map((factor, index) => (
+                          <li key={index} className="text-xs text-gray-700 flex items-start">
+                            <span className="text-orange-500 mr-1">•</span>
                             {factor}
                           </li>
                         ))}
@@ -742,42 +741,42 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
                 </div>
 
                 {/* Progress Indicator */}
-                <div className="mb-8">
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                    <span>Complete the assessment</span>
-                    <span>{Object.keys(formData).length}/{disease.fields.length} fields completed</span>
+                <div className="mb-2">
+                  <div className="flex items-center justify-between text-xs text-gray-600 mb-0.5">
+                    <span>Complete assessment</span>
+                    <span>{Object.keys(formData).length}/{disease.fields.length}</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div className="w-full bg-gray-200 rounded-full h-1.5">
                     <div 
-                      className={`bg-gradient-to-r ${disease.color} h-3 rounded-full transition-all duration-300`}
+                      className={`bg-gradient-to-r ${disease.color} h-1.5 rounded-full transition-all duration-300`}
                       style={{ width: `${(Object.keys(formData).length / disease.fields.length) * 100}%` }}
                     ></div>
                   </div>
                 </div>
 
-                {/* Form Fields */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {disease.fields.map((field, index) => renderField(field, index))}
+                {/* Form Fields - Show only first 6 fields */}
+                <div className="grid grid-cols-2 gap-2">
+                  {disease.fields.slice(0, 6).map((field, index) => renderField(field, index))}
                 </div>
 
                 {/* Submit Button */}
-                <div className="pt-6 border-t border-gray-200">
+                <div className="pt-2 border-t border-gray-200">
                   <button
                     type="submit"
-                    disabled={isLoading || Object.keys(formData).length < disease.fields.length}
-                    className={`w-full py-4 px-6 bg-gradient-to-r ${disease.color} text-white rounded-lg font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg`}
+                    disabled={isLoading || Object.keys(formData).length < 6}
+                    className={`w-full py-1.5 px-3 bg-gradient-to-r ${disease.color} text-white rounded font-semibold hover:opacity-90 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-sm text-xs`}
                   >
                     {isLoading ? (
                       <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
-                        Analyzing with AI...
+                        <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1"></div>
+                        Analyzing...
                       </div>
                     ) : (
                       'Get AI Diagnosis'
                     )}
                   </button>
-                  <p className="text-center text-sm text-gray-500 mt-2">
-                    Your data is encrypted and secure. Results in 30 seconds.
+                  <p className="text-center text-xs text-gray-500 mt-0.5">
+                    Secure & encrypted. Results in 30 seconds.
                   </p>
                 </div>
               </form>

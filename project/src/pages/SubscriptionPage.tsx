@@ -3,7 +3,7 @@ import { useSubscriptionStore, SubscriptionPlan } from '../stores/subscriptionSt
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import PaymentForm from '../components/PaymentForm';
-import { Check, Star, Users, Shield, Zap } from 'lucide-react';
+import { Check, Star, Users, Shield, Zap, Building2 } from 'lucide-react';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_your_key_here');
 
@@ -30,13 +30,15 @@ const SubscriptionPage: React.FC = () => {
   const getPlanIcon = (planId: string) => {
     switch (planId) {
       case 'basic':
-        return <Shield className="w-8 h-8 text-blue-600" />;
+        return <Shield className="w-6 h-6 text-blue-600" />;
       case 'premium':
-        return <Star className="w-8 h-8 text-yellow-500" />;
+        return <Star className="w-6 h-6 text-yellow-500" />;
       case 'family':
-        return <Users className="w-8 h-8 text-green-600" />;
+        return <Users className="w-6 h-6 text-green-600" />;
+      case 'enterprise':
+        return <Building2 className="w-6 h-6 text-purple-600" />;
       default:
-        return <Zap className="w-8 h-8 text-purple-600" />;
+        return <Zap className="w-6 h-6 text-purple-600" />;
     }
   };
 
@@ -145,49 +147,49 @@ const SubscriptionPage: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
             {plans.map((plan) => (
               <div
                 key={plan.id}
-                className={`bg-white rounded-lg shadow-lg p-8 border-2 transition-all duration-200 hover:shadow-xl ${
+                className={`bg-white rounded-lg shadow-lg p-4 border-2 transition-all duration-200 hover:shadow-xl ${
                   plan.id === 'premium' ? 'border-blue-500 scale-105' : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
                 {plan.id === 'premium' && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
                       Most Popular
                     </span>
                   </div>
                 )}
 
-                <div className="text-center mb-6">
-                  <div className="flex justify-center mb-4">
+                <div className="text-center mb-4">
+                  <div className="flex justify-center mb-3">
                     {getPlanIcon(plan.id)}
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {plan.name}
                   </h3>
-                  <div className="text-4xl font-bold text-blue-600 mb-1">
+                  <div className="text-2xl font-bold text-blue-600 mb-1">
                     ${plan.price}
                   </div>
-                  <div className="text-gray-500">
+                  <div className="text-sm text-gray-500">
                     per {plan.interval}
                   </div>
                 </div>
 
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-2 mb-6">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <Check className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-gray-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <button
                   onClick={() => handlePlanSelect(plan)}
-                  className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                  className={`w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                     plan.id === 'premium'
                       ? 'bg-blue-600 text-white hover:bg-blue-700'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200'

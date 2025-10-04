@@ -99,6 +99,27 @@ const defaultPlans: SubscriptionPlan[] = [
     maxPrescriptions: -1,
     prioritySupport: true,
   },
+  {
+    id: 'enterprise',
+    name: 'Enterprise Plan',
+    price: 79.99,
+    currency: 'USD',
+    interval: 'monthly',
+    features: [
+      'Up to 20 family members',
+      'Unlimited consultations',
+      'Advanced prescription management',
+      '24/7 priority support',
+      'Full medical records',
+      'Video consultations',
+      'Enterprise health dashboard',
+      'Custom integrations',
+      'Dedicated account manager'
+    ],
+    maxConsultations: -1,
+    maxPrescriptions: -1,
+    prioritySupport: true,
+  },
 ];
 
 export const useSubscriptionStore = create<SubscriptionState>()(
@@ -214,4 +235,4 @@ export const useSubscriptionStore = create<SubscriptionState>()(
       name: 'subscription-storage',
     }
   )
-); 
+);

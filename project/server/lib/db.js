@@ -1,4 +1,5 @@
 import { JSONFilePreset } from 'lowdb/node';
+import path from 'path';
 
 const defaultData = {
   users: [],
@@ -12,7 +13,9 @@ export let db = null;
 
 export async function initDatabase() {
   if (db) return db;
-  db = await JSONFilePreset('db.json', defaultData);
+  const dataDir = process.env.DATA_DIR || '.';
+  const dbFilePath = path.resolve(dataDir, 'db.json');
+  db = await JSONFilePreset(dbFilePath, defaultData);
   return db;
 }
 

@@ -1,25 +1,17 @@
-import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { initDatabase } from './lib/db.js';
-import authRouter from './routes/auth.js';
-import appointmentsRouter from './routes/appointments.js';
-import paymentsRouter from './routes/payments.js';
-import recordsRouter from './routes/records.js';
-import prescriptionsRouter from './routes/prescriptions.js';
-
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '1mb' }));
-app.use(morgan('dev'));
+app.use(express.json());
 
-// Add more detailed logging
+// Add detailed logging
 app.use((req, res, next) => {
   console.log(`🚀 ${req.method} ${req.path} - ${new Date().toLocaleTimeString()}`);
   next();
@@ -37,7 +29,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Additional test endpoints for more backend activity
+// Additional endpoints for more activity
 app.get('/api/test', (_req, res) => {
   console.log('🧪 Test endpoint called');
   res.json({ 
@@ -57,7 +49,6 @@ app.get('/api/status', (_req, res) => {
   });
 });
 
-// Add more endpoints that will show activity
 app.get('/api/activity', (_req, res) => {
   console.log('⚡ Activity endpoint called');
   res.json({
@@ -76,27 +67,12 @@ app.get('/api/logs', (_req, res) => {
   });
 });
 
-// Routes
-app.use('/api/auth', authRouter);
-app.use('/api/appointments', appointmentsRouter);
-app.use('/api/payments', paymentsRouter);
-app.use('/api/records', recordsRouter);
-app.use('/api/prescriptions', prescriptionsRouter);
-
-// Serve static frontend (built files in ../dist)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Serve static files
 const clientDistPath = path.resolve(__dirname, '..', 'dist');
 app.use(express.static(clientDistPath));
 
-// SPA fallback for non-API GET requests
-app.get('/', (req, res) => {
-  console.log('🔄 Serving frontend for root path');
-  res.sendFile(path.join(clientDistPath, 'index.html'));
-});
-
-// Catch-all for other routes (excluding API)
-app.get('/*', (req, res) => {
+// Serve frontend for all non-API routes
+app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) {
     return res.status(404).json({ error: 'API endpoint not found' });
   }
@@ -104,19 +80,12 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(clientDistPath, 'index.html'));
 });
 
-// Global error handler
-app.use((err, _req, res, _next) => {
-  console.error('Unhandled error:', err);
-  res.status(500).json({ error: 'Internal Server Error' });
-});
-
-const PORT = process.env.PORT ? Number(process.env.PORT) : 5000;
-
-await initDatabase();
-
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Backend listening on http://localhost:${PORT}`);
+  console.log(`🚀 Backend listening on http://localhost:${PORT}`);
+  console.log('📊 Backend is ready with enhanced logging!');
 });
+
 
 
 
