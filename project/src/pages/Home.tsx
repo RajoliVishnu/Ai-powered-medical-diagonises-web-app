@@ -145,7 +145,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600/10 via-cyan-600/5 to-teal-600/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center">
             <div className="flex items-center justify-center mb-4">
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
                 to="/diagnosis/heart"
                 className="btn-gradient px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg min-h-[48px] flex items-center justify-center"
               >
-                Start Health Check
+                Begin Health Check
               </Link>
               <Link
                 to="/doctors"

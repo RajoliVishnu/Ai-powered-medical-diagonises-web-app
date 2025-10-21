@@ -1,6 +1,8 @@
 # 🏥 AI-Powered Medical Diagnosis Web Application
 
-A comprehensive healthcare platform that uses artificial intelligence to provide instant medical diagnosis for various diseases. This educational project demonstrates the potential of AI in healthcare while maintaining strict medical ethics and user safety.
+This project is a practical, end‑to‑end web app I built to explore how AI can help with early health risk screening. It lets users enter simple medical parameters and get an AI‑assisted risk assessment for four common conditions (heart, liver, kidney, diabetes). My focus was split between usable UI, clear explanations, and safe/ethical framing.
+
+Rather than being a research prototype only, I tried to make it feel like a real product: consistent theme, responsive design, helpful hints on every form field, and an interpretation‑friendly results page with confidence, color coding, and next steps.
 
 ## 🌟 Key Features
 
@@ -240,3 +242,28 @@ For support and questions:
 **Last Updated**: December 2024  
 **Version**: 1.0.0  
 **Educational Use Only**
+
+---
+
+## 🧭 Design Decisions (Why I chose these approaches)
+
+- Theme and tone: Picked a medical, calm palette (emerald/teal/cyan) to communicate trust and clarity, and paired it with rounded cards and soft shadows for readability.
+- Form guidance: Every input has a label, placeholder, and a short hint. This reduces user error and makes demos smooth for non‑technical evaluators.
+- Result interpretation: Color‑coded cards (green/yellow/red) plus a 1‑sentence interpretation and confidence. This mirrors how clinicians communicate risk without over‑promising certainty.
+- Responsive defaults: Minimum 48px touch targets and grid collapse at common breakpoints to make it work naturally on mobile first.
+- Defensive UX: Prominent disclaimers and “educational use only” context on key pages to reflect responsible use.
+
+## 📚 References
+
+- Datasets: UCI Heart Disease, Indian Liver Patient, Chronic Kidney Disease, Pima Indians Diabetes
+- ML: Scikit‑learn documentation
+- UI: Tailwind CSS docs, Lucide icons
+- Deployment: Vite + Render guides
+
+## 📝 Changelog (high‑level)
+
+- 2024‑12‑15: Polished homepage copy, added hero intro, added developer footer
+- 2024‑12‑16: Added field hints + validation ranges, color‑coded results, confidence display
+- 2024‑12‑17: About page model specs + limitations + pipeline diagram
+- 2024‑12‑18: Footer disclaimer strengthened; responsive/touch target sweep
+- 2024‑12‑19: Documentation refresh (Design Decisions, References, Changelog)

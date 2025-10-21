@@ -145,6 +145,8 @@ export const DiagnosisPage: React.FC = () => {
     // Validate numeric fields
     if (field === 'age' && value) {
       const age = parseInt(value);
+      // Age guard rails chosen to reflect typical clinical screening ranges
+      // Rationale: avoids unrealistic inputs without being overly restrictive
       if (age < 1 || age > 120) {
         setErrors(prev => ({ ...prev, [field]: 'Age must be between 1 and 120 years' }));
       }

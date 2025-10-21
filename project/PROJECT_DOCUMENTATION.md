@@ -336,3 +336,19 @@ The project successfully demonstrates the potential of AI in healthcare while ma
 **Last Updated**: December 2024  
 **Version**: 1.0.0  
 **License**: Educational Use Only
+
+---
+
+## References
+
+- UCI Heart Disease Dataset, Indian Liver Patient Dataset, Chronic Kidney Disease Dataset, Pima Indians Diabetes
+- Scikit‑learn documentation (model training and evaluation)
+- Tailwind CSS, React Router, Lucide Icons (UI tooling)
+
+## Changelog (summary)
+
+- Homepage improvements: hero copy, intro, CTA alignment
+- Diagnosis form: labels, units, hints, ranges, error messaging
+- Results: risk color coding, confidence, guidance text
+- About page: model info, limitations, simple pipeline diagram
+- Disclaimers: consistent educational‑use messaging across pages
