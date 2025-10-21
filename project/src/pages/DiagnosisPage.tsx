@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, Clover as Liver, LucideKey as Kidney, Droplets, ArrowLeft, CheckCircle, AlertCircle, Users, Award, Star, Pill, Info } from 'lucide-react';
 import GuidedDiagnosisForm from '../components/GuidedDiagnosisForm';
+import ReportGenerator from '../components/ReportGenerator';
 
 const diseaseConfig = {
   heart: {
@@ -604,6 +605,20 @@ export const DiagnosisPage: React.FC = () => {
                   </div>
                 </div>
               )}
+
+              {/* Report Generator */}
+              <ReportGenerator
+                reportData={{
+                  patientName: 'Current User', // In real app, get from user context
+                  date: new Date().toISOString(),
+                  diseaseType: disease.name,
+                  riskLevel: result.risk,
+                  confidence: result.confidence,
+                  recommendations: result.recommendations,
+                  formData: formData
+                }}
+                onGenerate={() => console.log('Report generated successfully')}
+              />
 
               {/* Enhanced Actions with Better Alignment */}
               <div className="mobile-stack gap-4 pt-6 border-t border-gray-200">

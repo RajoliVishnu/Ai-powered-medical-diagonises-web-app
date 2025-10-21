@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Heart, User, LogOut, Home, Stethoscope, Menu, X, Phone, CreditCard, Info, Users, Shield, Calendar, FileText, Pill, ChevronDown } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import NotificationCenter from './NotificationCenter';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
@@ -37,6 +38,7 @@ const Navbar: React.FC = () => {
     { path: '/prescriptions', label: 'Prescriptions', icon: Pill, description: 'Manage medications' },
     { path: '/disease-prescriptions', label: 'Disease Prescriptions', icon: FileText, description: 'View by condition' },
     { path: '/transaction-history', label: 'Transaction History', icon: CreditCard, description: 'View payment history' },
+    { path: '/system-dashboard', label: 'System Status', icon: Shield, description: 'Monitor system health' },
   ];
 
   const otherNavigationItems = [
@@ -141,6 +143,11 @@ const Navbar: React.FC = () => {
             <div className="flex items-center space-x-2">
               {user ? (
                 <>
+                  {/* Notification Center */}
+                  <div className="hidden md:flex items-center">
+                    <NotificationCenter />
+                  </div>
+
                   {/* User Info - Desktop */}
                   <div className="hidden md:flex items-center space-x-3 px-3 py-2 glass rounded-lg">
                     <div className="bg-blue-100 p-2 rounded-full">

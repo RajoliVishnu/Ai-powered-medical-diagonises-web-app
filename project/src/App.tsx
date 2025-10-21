@@ -26,6 +26,8 @@ import { Toaster } from 'react-hot-toast';
 import TransactionHistory from './components/TransactionHistory';
 import StatusPage from './pages/StatusPage';
 import Footer from './components/Footer';
+import SystemDashboard from './pages/SystemDashboard';
+import NotificationCenter from './components/NotificationCenter';
 
 // Define proper interfaces for the data
 interface MedicalRecord {
@@ -68,6 +70,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/status" element={<StatusPage />} />
+              <Route path="/system-dashboard" element={<SystemDashboard />} />
               <Route
                 path="/"
                 element={

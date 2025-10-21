@@ -12,6 +12,7 @@ import paymentsRouter from './routes/payments.js';
 import recordsRouter from './routes/records.js';
 import prescriptionsRouter from './routes/prescriptions.js';
 import diagnosisRouter from './routes/diagnosis.js';
+import systemRouter from './routes/system.js';
 
 const app = express();
 
@@ -129,6 +130,7 @@ app.use('/api/payments', paymentsRouter);
 app.use('/api/records', recordsRouter);
 app.use('/api/prescriptions', prescriptionsRouter);
 app.use('/api/diagnosis', diagnosisRouter);
+app.use('/api/system', systemRouter);
 
 // Serve static frontend (built files in ../dist)
 const __filename = fileURLToPath(import.meta.url);
