@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Clover as Liver, LucideKey as Kidney, Droplets, ArrowRight, Users, Shield, Clock, Phone, CreditCard, Star, CheckCircle } from 'lucide-react';
+import { Heart, Clover as Liver, LucideKey as Kidney, Droplets, ArrowRight, Users, Shield, Clock, Phone, CreditCard, Star, CheckCircle, Brain, Stethoscope } from 'lucide-react';
 
 const diseases = [
   {
@@ -148,6 +148,14 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center">
+            <div className="flex items-center justify-center mb-4">
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-3 rounded-full mr-4">
+                <Stethoscope className="h-8 w-8 text-white" />
+              </div>
+              <div className="bg-gradient-to-r from-teal-500 to-cyan-500 p-3 rounded-full">
+                <Brain className="h-8 w-8 text-white" />
+              </div>
+            </div>
             <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
               AI-Powered{' '}
               <span className="text-gradient">
@@ -158,16 +166,22 @@ const Home: React.FC = () => {
               Get instant, accurate health insights with our advanced AI technology. 
               Connect with medical experts and take control of your health journey.
             </p>
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-8 max-w-4xl mx-auto">
+              <p className="text-emerald-800 text-sm font-medium">
+                <strong>How it works:</strong> Enter your medical parameters to detect risk of heart disease, liver disease, kidney disease, and diabetes. 
+                Our AI analyzes your data and provides personalized health recommendations with professional medical guidance.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link
                 to="/diagnosis/heart"
-                className="btn-gradient px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
+                className="btn-gradient px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg min-h-[48px] flex items-center justify-center"
               >
                 Start Health Check
               </Link>
               <Link
                 to="/doctors"
-                className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 rounded-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all"
+                className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 rounded-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all min-h-[48px] flex items-center justify-center"
               >
                 Find Doctors
               </Link>
@@ -371,14 +385,14 @@ const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/doctors"
-              className="inline-flex items-center px-8 py-4 bg-white text-emerald-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-4 bg-white text-emerald-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105 shadow-lg min-h-[48px]"
             >
               Consult with Experts
               <ArrowRight className="h-5 w-5 ml-2" />
             </Link>
             <Link
               to="/diagnosis/heart"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-all"
+              className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-all min-h-[48px]"
             >
               Start Health Check
               <Heart className="h-5 w-5 ml-2" />

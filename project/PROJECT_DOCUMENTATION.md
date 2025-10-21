@@ -248,6 +248,45 @@ VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 - "Great for people in remote areas"
 - "Professional and trustworthy design"
 
+## Before/After Improvements
+
+### UI/UX Enhancements
+
+| Aspect | Before | After |
+|--------|--------|-------|
+| **Color Theme** | Generic blue/purple | Medical professional theme (emerald, teal, cyan) |
+| **Form Fields** | Basic inputs without guidance | Clear labels, hints, and validation |
+| **Result Display** | Plain text results | Color-coded cards with detailed explanations |
+| **Navigation** | Basic navigation | Professional medical-themed navigation |
+| **Mobile Experience** | Limited mobile optimization | Full responsive design with touch-friendly buttons |
+
+### Form Validation Improvements
+
+| Feature | Before | After |
+|---------|--------|-------|
+| **Field Labels** | Generic or missing | Clear, descriptive labels for all fields |
+| **Input Hints** | No guidance | Helpful hints for each field (e.g., "Enter age in years (1-120)") |
+| **Validation** | Basic required fields | Range checks, format validation, error messages |
+| **User Experience** | Confusing inputs | Clear guidance and immediate feedback |
+
+### Result Display Enhancements
+
+| Feature | Before | After |
+|---------|--------|-------|
+| **Risk Assessment** | Simple positive/negative | Detailed risk levels (Low/Moderate/High) with confidence scores |
+| **Visual Design** | Plain text | Color-coded cards with medical icons |
+| **Explanations** | Basic results | Detailed explanations and recommendations |
+| **Professional Guidance** | Limited | Comprehensive medical disclaimers and doctor suggestions |
+
+### Documentation & Ethics
+
+| Feature | Before | After |
+|---------|--------|-------|
+| **Medical Disclaimers** | Missing | Comprehensive disclaimers on all pages |
+| **Model Information** | Not available | Detailed AI model specifications and limitations |
+| **Educational Purpose** | Unclear | Clear statements about educational use only |
+| **Professional Standards** | Basic | Medical-grade professional presentation |
+
 ## Future Scope
 
 ### Short-term Improvements

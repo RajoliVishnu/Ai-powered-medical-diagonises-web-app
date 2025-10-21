@@ -106,6 +106,7 @@ export const DiagnosisPage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [result, setResult] = useState<{ 
     risk: string; 
     confidence: number; 
@@ -135,6 +136,19 @@ export const DiagnosisPage: React.FC = () => {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+    
+    // Validate numeric fields
+    if (field === 'age' && value) {
+      const age = parseInt(value);
+      if (age < 1 || age > 120) {
+        setErrors(prev => ({ ...prev, [field]: 'Age must be between 1 and 120 years' }));
+      }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -386,12 +400,13 @@ export const DiagnosisPage: React.FC = () => {
                               onChange={(e) => handleInputChange(field.name, e.target.value)}
                               className="form-field text-sm"
                               required
-                              min={field.type === 'number' ? 1 : undefined}
-                              max={field.type === 'number' ? 120 : undefined}
+                              min={field.type === 'number' ? (field.name === 'age' ? 1 : 0) : undefined}
+                              max={field.type === 'number' ? (field.name === 'age' ? 120 : 1000) : undefined}
+                              step={field.type === 'number' ? (field.name === 'age' ? 1 : 0.1) : undefined}
                             />
                           )}
                           <div className="form-hint">
-                            {field.name === 'age' && 'Enter your age in years'}
+                            {field.name === 'age' && 'Enter your age in years (1-120)'}
                             {field.name === 'sex' && 'Select your biological sex'}
                             {field.name === 'gender' && 'Select your gender identity'}
                             {field.name === 'chestPain' && 'Describe the type of chest pain you experience'}
@@ -420,6 +435,11 @@ export const DiagnosisPage: React.FC = () => {
                             {field.name === 'bmi' && 'Body Mass Index (weight/height²)'}
                             {field.name === 'diabetesPedigree' && 'Diabetes family history function'}
                           </div>
+                          {errors[field.name] && (
+                            <div className="text-red-500 text-xs mt-1">
+                              {errors[field.name]}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -427,7 +447,7 @@ export const DiagnosisPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full py-3 px-4 btn-gradient rounded-lg font-semibold text-center transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm"
+                      className="w-full py-4 px-4 btn-gradient rounded-lg font-semibold text-center transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm min-h-[48px] flex items-center justify-center"
                     >
                       {isLoading ? (
                         <div className="flex items-center justify-center">
@@ -447,6 +467,14 @@ export const DiagnosisPage: React.FC = () => {
             )
           ) : (
             <div className="space-y-8">
+              {/* AI Diagnosis Summary */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <p className="text-blue-800 text-sm font-medium text-center">
+                  <strong>AI Analysis Complete:</strong> This is not a medical diagnosis. 
+                  Please consult a qualified healthcare provider for proper medical evaluation and treatment.
+                </p>
+              </div>
+
               {/* Enhanced Results with Medical Cards */}
               <div className={`medical-card ${result.risk === 'Low' ? 'medical-success' : result.risk === 'Moderate' ? 'medical-warning' : 'medical-danger'}`}>
                 <div className="flex items-center justify-between mb-6">

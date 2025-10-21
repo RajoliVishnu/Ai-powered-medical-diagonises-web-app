@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Users, Shield, Award, Globe, Phone, Brain, Database, Cpu, BarChart3, Zap, Target } from 'lucide-react';
+import { Heart, Users, Shield, Award, Globe, Phone, Brain, Database, Cpu, BarChart3, Zap, Target, AlertTriangle } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
   const stats = [
@@ -189,6 +189,43 @@ const AboutPage: React.FC = () => {
                 <h4 className="font-semibold text-gray-900 mb-1">Processing</h4>
                 <p className="text-sm text-gray-600">Real-time analysis</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Model Limitations Section */}
+      <section className="py-8 bg-red-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center">
+              <AlertTriangle className="h-6 w-6 text-red-600 mr-2" />
+              Model Limitations & Important Notes
+            </h2>
+            <p className="text-sm text-gray-600">Understanding the scope and limitations of our AI models</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-lg border border-red-200">
+              <h3 className="text-lg font-bold text-red-800 mb-4">⚠️ Model Limitations</h3>
+              <ul className="space-y-2 text-sm text-red-700">
+                <li>• Models trained on specific datasets may not generalize to all populations</li>
+                <li>• Accuracy depends on quality and completeness of input data</li>
+                <li>• Not trained on local or regional health patterns</li>
+                <li>• Cannot replace comprehensive medical examination</li>
+                <li>• Limited to the 4 diseases covered (Heart, Liver, Kidney, Diabetes)</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg border border-yellow-200">
+              <h3 className="text-lg font-bold text-yellow-800 mb-4">📋 Important Considerations</h3>
+              <ul className="space-y-2 text-sm text-yellow-700">
+                <li>• Results are for educational and screening purposes only</li>
+                <li>• Always consult healthcare professionals for diagnosis</li>
+                <li>• Emergency situations require immediate medical attention</li>
+                <li>• Individual health factors may not be fully captured</li>
+                <li>• Regular medical checkups are still essential</li>
+              </ul>
             </div>
           </div>
         </div>

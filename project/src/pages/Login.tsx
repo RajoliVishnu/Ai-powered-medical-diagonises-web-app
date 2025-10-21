@@ -139,6 +139,14 @@ const Login: React.FC = () => {
                 </Link>
               </p>
             </div>
+
+            {/* Medical Disclaimer */}
+            <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-yellow-800 text-sm text-center">
+                <strong>Medical Disclaimer:</strong> This application is for educational purposes only and does not replace professional medical advice. 
+                Always consult with qualified healthcare providers for proper diagnosis and treatment.
+              </p>
+            </div>
           </form>
         </div>
       </div>
