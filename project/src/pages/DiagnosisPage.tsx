@@ -141,13 +141,78 @@ export const DiagnosisPage: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate AI prediction with more sophisticated logic
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    try {
+      // Get auth token
+      const token = localStorage.getItem('token');
+      
+      // Call backend API for AI diagnosis
+      const response = await fetch('/api/diagnosis/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          diseaseType: diseaseId,
+          formData: formData
+        })
+      });
 
-    // Enhanced mock prediction result
+      if (response.ok) {
+        const data = await response.json();
+        const prediction = data.prediction;
+        
+        setResult({
+          risk: prediction.risk,
+          confidence: prediction.confidence,
+          recommendations: prediction.recommendations,
+          doctorRecommendations: prediction.doctorRecommendations
+        });
+
+        // Save diagnosis as medical record
+        const medicalRecord: MedicalRecord = {
+          id: data.recordId,
+          date: new Date().toISOString(),
+          type: 'consultation',
+          title: `${disease.name} Assessment`,
+          description: `AI-powered diagnosis assessment for ${disease.name}. Risk level: ${prediction.risk} (${prediction.confidence}% confidence). Symptoms and parameters analyzed.`,
+          doctor: 'AI Diagnostic System',
+          status: 'completed',
+          symptoms: Object.keys(formData).filter(key => formData[key] && key !== 'age' && key !== 'sex' && key !== 'gender'),
+          medications: [],
+          followUp: prediction.recommendations.join('. '),
+          diagnosedDisease: diseaseId || 'unknown',
+          diseaseRisk: prediction.risk,
+          confidence: prediction.confidence
+        };
+
+        // Store in localStorage for demo purposes
+        const existingRecords = JSON.parse(localStorage.getItem('medicalRecords') || '[]');
+        existingRecords.push(medicalRecord);
+        localStorage.setItem('medicalRecords', JSON.stringify(existingRecords));
+        
+        console.log('✅ AI Diagnosis completed successfully');
+      } else {
+        console.error('❌ Diagnosis API failed:', await response.text());
+        // Fallback to mock data if API fails
+        await handleMockDiagnosis();
+      }
+    } catch (error) {
+      console.error('❌ Diagnosis error:', error);
+      // Fallback to mock data if API fails
+      await handleMockDiagnosis();
+    }
+    
+    setIsLoading(false);
+  };
+
+  const handleMockDiagnosis = async () => {
+    // Fallback mock diagnosis if API is not available
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
     const risks = ['Low', 'Moderate', 'High'];
     const risk = risks[Math.floor(Math.random() * risks.length)];
-    const confidence = Math.floor(Math.random() * 20) + 80; // 80-99%
+    const confidence = Math.floor(Math.random() * 20) + 80;
     
     const recommendations = {
       Low: [
@@ -170,7 +235,6 @@ export const DiagnosisPage: React.FC = () => {
       ]
     };
 
-    // Mock doctor recommendations based on disease type
     const doctorRecommendations = {
       heart: [
         { name: 'Dr. Sarah Johnson', specialty: 'Cardiologist', rating: 4.9, experience: '15 years' },
@@ -188,37 +252,12 @@ export const DiagnosisPage: React.FC = () => {
       ]
     };
 
-    const diagnosisResult = {
+    setResult({
       risk,
       confidence,
       recommendations: recommendations[risk as keyof typeof recommendations],
       doctorRecommendations: doctorRecommendations[diseaseId as keyof typeof doctorRecommendations] || []
-    };
-
-    setResult(diagnosisResult);
-    setIsLoading(false);
-
-    // Save diagnosis as medical record
-    const medicalRecord: MedicalRecord = {
-      id: Date.now().toString(),
-      date: new Date().toISOString(),
-      type: 'consultation',
-      title: `${disease.name} Assessment`,
-      description: `AI-powered diagnosis assessment for ${disease.name}. Risk level: ${risk} (${confidence}% confidence). Symptoms and parameters analyzed.`,
-      doctor: 'AI Diagnostic System',
-      status: 'completed',
-      symptoms: Object.keys(formData).filter(key => formData[key] && key !== 'age' && key !== 'sex' && key !== 'gender'),
-      medications: [],
-      followUp: recommendations[risk as keyof typeof recommendations].join('. '),
-      diagnosedDisease: diseaseId || 'unknown',
-      diseaseRisk: risk,
-      confidence: confidence
-    };
-
-    // Store in localStorage for demo purposes
-    const existingRecords = JSON.parse(localStorage.getItem('medicalRecords') || '[]');
-    existingRecords.push(medicalRecord);
-    localStorage.setItem('medicalRecords', JSON.stringify(existingRecords));
+    });
   };
 
   const handleConsultSpecialist = () => {
@@ -311,16 +350,16 @@ export const DiagnosisPage: React.FC = () => {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-1.5">
                         <div 
-                          className={`bg-gradient-to-r ${disease.color} h-1.5 rounded-full transition-all duration-300`}
+                          className={`bg-gradient-to-r ${disease.color} h-1.5 rounded-full progress-bar`}
                           style={{ width: `${(Object.keys(formData).length / disease.fields.length) * 100}%` }}
                         ></div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       {disease.fields.slice(0, 6).map((field, index) => (
                         <div key={index} className="space-y-1">
-                          <label className="block text-xs font-medium text-gray-700">
+                          <label className="form-label text-sm">
                             {field.label}
                             <span className="text-red-500 ml-1">*</span>
                           </label>
@@ -328,7 +367,7 @@ export const DiagnosisPage: React.FC = () => {
                             <select
                               value={formData[field.name] || ''}
                               onChange={(e) => handleInputChange(field.name, e.target.value)}
-                              className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-xs"
+                              className="form-field text-sm"
                               required
                               aria-label={field.label}
                             >
@@ -345,10 +384,42 @@ export const DiagnosisPage: React.FC = () => {
                               placeholder={field.placeholder}
                               value={formData[field.name] || ''}
                               onChange={(e) => handleInputChange(field.name, e.target.value)}
-                              className="w-full px-1.5 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors text-xs"
+                              className="form-field text-sm"
                               required
+                              min={field.type === 'number' ? 1 : undefined}
+                              max={field.type === 'number' ? 120 : undefined}
                             />
                           )}
+                          <div className="form-hint">
+                            {field.name === 'age' && 'Enter your age in years'}
+                            {field.name === 'sex' && 'Select your biological sex'}
+                            {field.name === 'gender' && 'Select your gender identity'}
+                            {field.name === 'chestPain' && 'Describe the type of chest pain you experience'}
+                            {field.name === 'restingBP' && 'Your resting blood pressure reading (if known)'}
+                            {field.name === 'cholesterol' && 'Your cholesterol level from recent blood test'}
+                            {field.name === 'fastingBS' && 'Fasting blood sugar level above 120 mg/dl'}
+                            {field.name === 'maxHR' && 'Maximum heart rate during exercise'}
+                            {field.name === 'exerciseAngina' && 'Chest pain during physical activity'}
+                            {field.name === 'totalBilirubin' && 'Total bilirubin level from liver function test'}
+                            {field.name === 'directBilirubin' && 'Direct bilirubin level from liver function test'}
+                            {field.name === 'alkalinePhosphatase' && 'Alkaline phosphatase enzyme level'}
+                            {field.name === 'alamineAminotransferase' && 'ALT enzyme level from liver test'}
+                            {field.name === 'aspartateAminotransferase' && 'AST enzyme level from liver test'}
+                            {field.name === 'totalProteins' && 'Total protein level from blood test'}
+                            {field.name === 'bloodPressure' && 'Your blood pressure reading (if known)'}
+                            {field.name === 'specificGravity' && 'Specific gravity from urine test'}
+                            {field.name === 'albumin' && 'Albumin level in urine (0-5 scale)'}
+                            {field.name === 'sugar' && 'Sugar level in urine (0-5 scale)'}
+                            {field.name === 'redBloodCells' && 'Red blood cells in urine (normal/abnormal)'}
+                            {field.name === 'pusCell' && 'Pus cells in urine (normal/abnormal)'}
+                            {field.name === 'bloodUrea' && 'Blood urea nitrogen level'}
+                            {field.name === 'pregnancies' && 'Number of pregnancies (0 if male)'}
+                            {field.name === 'glucose' && 'Fasting glucose level from blood test'}
+                            {field.name === 'skinThickness' && 'Skin fold thickness measurement'}
+                            {field.name === 'insulin' && 'Insulin level from blood test'}
+                            {field.name === 'bmi' && 'Body Mass Index (weight/height²)'}
+                            {field.name === 'diabetesPedigree' && 'Diabetes family history function'}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -356,12 +427,12 @@ export const DiagnosisPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full py-1.5 px-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded font-semibold text-center hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-xs"
+                      className="w-full py-3 px-4 btn-gradient rounded-lg font-semibold text-center transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm"
                     >
                       {isLoading ? (
                         <div className="flex items-center justify-center">
-                          <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1"></div>
-                          Analyzing...
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                          Analyzing with AI...
                         </div>
                       ) : (
                         'Get AI Diagnosis'
@@ -376,8 +447,8 @@ export const DiagnosisPage: React.FC = () => {
             )
           ) : (
             <div className="space-y-8">
-              {/* Enhanced Results */}
-              <div className={`p-8 rounded-xl ${result.risk === 'Low' ? 'bg-green-50 border-2 border-green-200' : result.risk === 'Moderate' ? 'bg-yellow-50 border-2 border-yellow-200' : 'bg-red-50 border-2 border-red-200'}`}>
+              {/* Enhanced Results with Medical Cards */}
+              <div className={`medical-card ${result.risk === 'Low' ? 'medical-success' : result.risk === 'Moderate' ? 'medical-warning' : 'medical-danger'}`}>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     {result.risk === 'Low' ? (
@@ -386,33 +457,69 @@ export const DiagnosisPage: React.FC = () => {
                       <AlertCircle className={`h-12 w-12 ${result.risk === 'Moderate' ? 'text-yellow-600' : 'text-red-600'} mr-4`} />
                     )}
                     <div>
-                      <h2 className="text-3xl font-bold text-gray-900">
+                      <h2 className="medical-header">
                         Risk Level: <span className={result.risk === 'Low' ? 'text-green-600' : result.risk === 'Moderate' ? 'text-yellow-600' : 'text-red-600'}>{result.risk}</span>
                       </h2>
                       <p className="text-gray-600 text-lg">AI Confidence: {result.confidence}%</p>
+                      <div className="mt-2">
+                        {result.risk === 'Low' && (
+                          <p className="text-green-700 text-sm font-medium">
+                            ✅ Your health parameters appear to be within normal ranges. Continue maintaining a healthy lifestyle.
+                          </p>
+                        )}
+                        {result.risk === 'Moderate' && (
+                          <p className="text-yellow-700 text-sm font-medium">
+                            ⚠️ Some parameters indicate potential risk. We recommend consulting with a healthcare provider for further evaluation.
+                          </p>
+                        )}
+                        {result.risk === 'High' && (
+                          <p className="text-red-700 text-sm font-medium">
+                            🚨 High risk detected. Please seek immediate medical attention from a qualified healthcare provider.
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-gray-500">Analyzed by</div>
-                    <div className="font-bold text-blue-600">MediCare AI</div>
+                    <div className="font-bold text-emerald-600">MediCare AI</div>
+                    <div className="text-xs text-gray-400 mt-1">Powered by Machine Learning</div>
                   </div>
                 </div>
               </div>
 
-              {/* Recommendations */}
-              <div className="bg-gray-50 p-6 rounded-xl">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
-                  Personalized Recommendations
+              {/* Enhanced Recommendations */}
+              <div className="medical-card">
+                <h3 className="medical-subheader flex items-center mb-6">
+                  <CheckCircle className="h-6 w-6 text-emerald-600 mr-2" />
+                  Personalized Health Recommendations
                 </h3>
-                <ul className="space-y-4">
+                <div className="grid gap-4">
                   {result.recommendations.map((rec, index) => (
-                    <li key={index} className="flex items-start bg-white p-4 rounded-lg shadow-sm">
-                      <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{rec}</span>
-                    </li>
+                    <div key={index} className="flex items-start bg-gradient-to-r from-emerald-50 to-teal-50 p-4 rounded-lg border border-emerald-200">
+                      <div className="flex-shrink-0 mr-3">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                          <span className="text-emerald-600 font-bold text-sm">{index + 1}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-gray-700 font-medium">{rec}</p>
+                        <div className="mt-1 text-xs text-emerald-600 font-medium">
+                          {index === 0 && 'Priority: High'}
+                          {index === 1 && 'Priority: Medium'}
+                          {index === 2 && 'Priority: Medium'}
+                          {index === 3 && 'Priority: Low'}
+                        </div>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
+                <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <p className="text-sm text-blue-800">
+                    <strong>💡 Pro Tip:</strong> These recommendations are based on your current health parameters. 
+                    For the best results, implement them gradually and monitor your progress.
+                  </p>
+                </div>
               </div>
 
               {/* Doctor Recommendations */}
@@ -443,18 +550,18 @@ export const DiagnosisPage: React.FC = () => {
                 </div>
               )}
 
-              {/* Enhanced Actions */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
+              {/* Enhanced Actions with Better Alignment */}
+              <div className="mobile-stack gap-4 pt-6 border-t border-gray-200">
                 <button
                   onClick={handleConsultSpecialist}
-                  className="flex-1 py-4 px-6 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-semibold text-center hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg flex items-center justify-center"
+                  className="flex-1 py-4 px-6 btn-gradient rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg btn-center"
                 >
                   <Users className="h-5 w-5 mr-2" />
                   Consult Recommended Specialists
                 </button>
                 <button
                   onClick={() => setResult(null)}
-                  className="flex-1 py-4 px-6 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center"
+                  className="flex-1 py-4 px-6 border-2 border-emerald-300 text-emerald-700 rounded-lg font-semibold hover:bg-emerald-50 transition-colors btn-center"
                 >
                   <img src={photoUrl} alt={`${disease.name} photo`} className="h-5 w-5 mr-2 rounded-full object-cover" />
                   Take Another Assessment

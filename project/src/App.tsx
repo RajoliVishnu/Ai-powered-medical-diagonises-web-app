@@ -25,6 +25,7 @@ import DiseasePrescriptionsPage from './pages/DiseasePrescriptionsPage';
 import { Toaster } from 'react-hot-toast';
 import TransactionHistory from './components/TransactionHistory';
 import StatusPage from './pages/StatusPage';
+import Footer from './components/Footer';
 
 // Define proper interfaces for the data
 interface MedicalRecord {
@@ -280,6 +281,7 @@ function App() {
               />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
+            <Footer />
             <Toaster position="top-right" />
           </div>
         </Router>

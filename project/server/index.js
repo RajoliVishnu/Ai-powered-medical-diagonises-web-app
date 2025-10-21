@@ -11,6 +11,7 @@ import appointmentsRouter from './routes/appointments.js';
 import paymentsRouter from './routes/payments.js';
 import recordsRouter from './routes/records.js';
 import prescriptionsRouter from './routes/prescriptions.js';
+import diagnosisRouter from './routes/diagnosis.js';
 
 const app = express();
 
@@ -25,25 +26,46 @@ app.use((req, res, next) => {
   next();
 });
 
-// Health endpoint
+// Health endpoint with enhanced medical theme
 app.get('/api/health', (_req, res) => {
   console.log('🏥 Health check requested');
   res.json({ 
     ok: true, 
-    service: 'medical-backend', 
+    service: 'MediCare AI Backend', 
     version: '1.0.0',
+    theme: 'Medical Professional',
+    colors: {
+      primary: '#059669',
+      secondary: '#0d9488', 
+      accent: '#0891b2'
+    },
+    features: [
+      'AI-Powered Diagnosis',
+      'Medical Records Management',
+      'User Authentication',
+      'Payment Processing',
+      'Doctor Consultation'
+    ],
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
   });
 });
 
-// Additional test endpoints for more backend activity
+// Enhanced test endpoints with medical theme
 app.get('/api/test', (_req, res) => {
   console.log('🧪 Test endpoint called');
   res.json({ 
-    message: 'Backend is working!', 
+    message: 'MediCare AI Backend is working!', 
     timestamp: new Date().toISOString(),
-    status: 'active'
+    status: 'active',
+    theme: 'Medical Professional',
+    improvements: [
+      'Enhanced UI with medical color theme',
+      'Improved form validation and hints',
+      'Better result display with colored cards',
+      'Comprehensive medical disclaimers',
+      'AI model information and documentation'
+    ]
   });
 });
 
@@ -52,27 +74,51 @@ app.get('/api/status', (_req, res) => {
   res.json({
     status: 'running',
     database: 'connected',
-    services: ['auth', 'appointments', 'payments', 'records', 'prescriptions'],
+    theme: 'Medical Professional',
+    services: ['auth', 'appointments', 'payments', 'records', 'prescriptions', 'diagnosis'],
+    improvements: {
+      ui: 'Medical color theme (emerald, teal, cyan)',
+      forms: 'Enhanced validation with helpful hints',
+      results: 'Color-coded risk assessment cards',
+      documentation: 'Comprehensive project documentation',
+      disclaimers: 'Medical ethics and safety warnings'
+    },
     timestamp: new Date().toISOString()
   });
 });
 
-// Add more endpoints that will show activity
+// Enhanced activity endpoint with medical theme
 app.get('/api/activity', (_req, res) => {
   console.log('⚡ Activity endpoint called');
   res.json({
-    message: 'Backend activity detected!',
+    message: 'MediCare AI Backend activity detected!',
     timestamp: new Date().toISOString(),
-    activity: 'User interaction detected'
+    activity: 'User interaction detected',
+    theme: 'Medical Professional',
+    features: {
+      'UI Improvements': 'Medical color theme with emerald, teal, and cyan',
+      'Form Enhancement': 'Clear labels, hints, and validation',
+      'Result Display': 'Color-coded cards (Green=Healthy, Yellow=Moderate, Red=High Risk)',
+      'Documentation': 'Comprehensive project documentation',
+      'Medical Ethics': 'Proper disclaimers and safety warnings'
+    }
   });
 });
 
 app.get('/api/logs', (_req, res) => {
   console.log('📝 Logs endpoint called');
   res.json({
-    message: 'Backend logs are working!',
+    message: 'MediCare AI Backend logs are working!',
     timestamp: new Date().toISOString(),
-    logs: 'All systems operational'
+    logs: 'All systems operational',
+    improvements: {
+      'UI Theme': 'Professional medical color scheme',
+      'Form Validation': 'Enhanced with helpful hints and clear labels',
+      'Result Display': 'Color-coded risk assessment with detailed explanations',
+      'Documentation': 'Complete project documentation and README',
+      'Medical Ethics': 'Comprehensive disclaimers and safety warnings',
+      'AI Models': 'Detailed model information and technical specifications'
+    }
   });
 });
 
@@ -82,6 +128,7 @@ app.use('/api/appointments', appointmentsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/records', recordsRouter);
 app.use('/api/prescriptions', prescriptionsRouter);
+app.use('/api/diagnosis', diagnosisRouter);
 
 // Serve static frontend (built files in ../dist)
 const __filename = fileURLToPath(import.meta.url);

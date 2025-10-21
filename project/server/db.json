@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "id": "eTlQdjM9PYC7tUq1haAAZ",
+      "name": "vishnu",
+      "email": "2203031241100@paruluniversity.ac.in",
+      "passwordHash": "$2b$10$3NdpwuKSluKhOj2gWhWVyuT4UZB59AXN..ahVaEf/GdylP5HeHi16",
+      "createdAt": "2025-10-21T06:38:46.173Z"
+    }
+  ],
+  "appointments": [],
+  "records": [],
+  "prescriptions": [],
+  "payments": []
+}

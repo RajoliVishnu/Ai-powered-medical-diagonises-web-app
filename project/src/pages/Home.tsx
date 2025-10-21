@@ -142,32 +142,32 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-teal-600/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center">
             <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
               AI-Powered{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="text-gradient">
                 Medical Diagnosis
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
               Get instant, accurate health insights with our advanced AI technology. 
               Connect with medical experts and take control of your health journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link
                 to="/diagnosis/heart"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg"
+                className="btn-gradient px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
               >
                 Start Health Check
               </Link>
               <Link
                 to="/doctors"
-                className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all"
+                className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 rounded-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all"
               >
                 Find Doctors
               </Link>
@@ -176,19 +176,19 @@ const Home: React.FC = () => {
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600 bg-white/50 backdrop-blur-sm rounded-2xl p-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">50K+</div>
+                <div className="text-2xl font-bold text-emerald-600">50K+</div>
                 <div>Happy Patients</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">500+</div>
+                <div className="text-2xl font-bold text-teal-600">500+</div>
                 <div>Expert Doctors</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600">24/7</div>
+                <div className="text-2xl font-bold text-cyan-600">24/7</div>
                 <div>Support Available</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">₹299</div>
+                <div className="text-2xl font-bold text-emerald-600">₹299</div>
                 <div>Starting Price</div>
               </div>
             </div>
@@ -360,25 +360,25 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600">
+      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-6">
             Ready to Take Control of Your Health?
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-emerald-100 mb-8">
             Join thousands of users who trust MediCare AI for their healthcare needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/doctors"
-              className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-4 bg-white text-emerald-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105 shadow-lg"
             >
               Consult with Experts
               <ArrowRight className="h-5 w-5 ml-2" />
             </Link>
             <Link
               to="/diagnosis/heart"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all"
+              className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-all"
             >
               Start Health Check
               <Heart className="h-5 w-5 ml-2" />
