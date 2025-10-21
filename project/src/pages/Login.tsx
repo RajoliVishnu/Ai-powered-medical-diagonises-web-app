@@ -49,7 +49,7 @@ const Login: React.FC = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 rounded-2xl blur opacity-30 animate-pulse"></div>
               </div>
             </div>
-            <h2 className="text-4xl font-bold text-gradient mb-2">Welcome back</h2>
+            <h2 className="text-4xl font-bold text-gradient mb-2">Login to Continue</h2>
             <p className="text-lg text-gray-600 font-medium">
               Sign in to access your medical dashboard
             </p>
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
               <div className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email address
+                    Email Address
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -79,7 +79,7 @@ const Login: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                      placeholder="Enter your email"
+                      placeholder="example@gmail.com"
                     />
                   </div>
                 </div>
@@ -135,9 +135,14 @@ const Login: React.FC = () => {
               <p className="text-gray-600 font-medium">
                 Don't have an account?{' '}
                 <Link to="/register" className="font-semibold text-gradient hover:scale-105 transition-transform duration-200">
-                  Sign up here
+                  Register here
                 </Link>
               </p>
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-blue-800 text-sm">
+                  <strong>Demo Login:</strong> Use any email and password to test the system
+                </p>
+              </div>
             </div>
 
             {/* Medical Disclaimer */}

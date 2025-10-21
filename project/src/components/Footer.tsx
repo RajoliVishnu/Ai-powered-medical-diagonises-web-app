@@ -79,9 +79,9 @@ const Footer: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-3 bg-yellow-900/20 border border-yellow-500/30 rounded-lg">
-                <p className="text-yellow-200">
-                  <strong>Note:</strong> Always consult with qualified healthcare providers for proper diagnosis and treatment.
+              <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
+                <p className="text-red-200 font-semibold text-center">
+                  ⚠️ This project is for educational and demonstration purposes only. It does not provide medical advice. Always consult a healthcare professional for actual diagnosis.
                 </p>
               </div>
             </div>

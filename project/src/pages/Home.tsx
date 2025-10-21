@@ -156,20 +156,19 @@ const Home: React.FC = () => {
                 <Brain className="h-8 w-8 text-white" />
               </div>
             </div>
-            <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-4">
               AI-Powered{' '}
               <span className="text-gradient">
-                Medical Diagnosis
+                Medical Diagnosis System
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Get instant, accurate health insights with our advanced AI technology. 
-              Connect with medical experts and take control of your health journey.
-            </p>
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-8 max-w-4xl mx-auto">
-              <p className="text-emerald-800 text-sm font-medium">
-                <strong>How it works:</strong> Enter your medical parameters to detect risk of heart disease, liver disease, kidney disease, and diabetes. 
-                Our AI analyzes your data and provides personalized health recommendations with professional medical guidance.
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mb-6">
+              Smart Health Prediction for Kidney, Liver, Heart, and Diabetes Diseases
+            </h2>
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mb-8 max-w-4xl mx-auto">
+              <p className="text-emerald-800 text-base font-medium leading-relaxed">
+                <strong>How it works:</strong> This web app uses AI models to analyze health data and predict the likelihood of diseases. 
+                Enter your medical values, and get instant diagnostic insights with professional medical guidance.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -427,6 +426,21 @@ const Home: React.FC = () => {
               <p className="text-sm text-gray-300">Step-by-step tutorials</p>
               <p className="text-xs text-gray-400">In your language</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Developer Information Footer */}
+      <section className="py-8 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+            <h3 className="text-xl font-bold mb-2">Final Year Project</h3>
+            <p className="text-emerald-100 mb-4">
+              Developed by <strong>Vishnu Rajoli</strong> - AI-Powered Medical Diagnosis System
+            </p>
+            <p className="text-sm text-emerald-200">
+              This project demonstrates the application of Machine Learning in healthcare for educational purposes
+            </p>
           </div>
         </div>
       </section>

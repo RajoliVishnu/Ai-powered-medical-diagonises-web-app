@@ -125,9 +125,9 @@ const AboutPage: React.FC = () => {
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center">
               <Brain className="h-6 w-6 text-emerald-600 mr-2" />
-              AI Model Information
+              About Our AI Models
             </h2>
-            <p className="text-sm text-gray-600">Our machine learning models trained on medical datasets</p>
+            <p className="text-sm text-gray-600">This system uses trained Machine Learning models to analyze medical data and predict disease risks</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -161,36 +161,63 @@ const AboutPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Technical Details */}
-          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-lg border border-emerald-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-              <Cpu className="h-5 w-5 text-emerald-600 mr-2" />
-              Technical Specifications
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="bg-emerald-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <Database className="h-6 w-6 text-emerald-600" />
+              {/* Technical Details */}
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-lg border border-emerald-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                  <Cpu className="h-5 w-5 text-emerald-600 mr-2" />
+                  Technical Specifications
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <div className="bg-emerald-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Database className="h-6 w-6 text-emerald-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Training Data</h4>
+                    <p className="text-sm text-gray-600">10,000+ medical records</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <BarChart3 className="h-6 w-6 text-teal-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Performance</h4>
+                    <p className="text-sm text-gray-600">94% average accuracy</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-cyan-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Zap className="h-6 w-6 text-cyan-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Processing</h4>
+                    <p className="text-sm text-gray-600">Real-time analysis</p>
+                  </div>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Training Data</h4>
-                <p className="text-sm text-gray-600">10,000+ medical records</p>
               </div>
-              <div className="text-center">
-                <div className="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <BarChart3 className="h-6 w-6 text-teal-600" />
+
+              {/* AI Flow Diagram */}
+              <div className="bg-white p-6 rounded-lg border border-gray-200 mt-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                  <Target className="h-5 w-5 text-emerald-600 mr-2" />
+                  AI Model Pipeline
+                </h3>
+                <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                  <div className="bg-blue-100 p-4 rounded-lg text-center">
+                    <div className="text-2xl mb-2">📊</div>
+                    <p className="text-sm font-medium">Input Data</p>
+                    <p className="text-xs text-gray-600">Medical Parameters</p>
+                  </div>
+                  <div className="text-2xl text-gray-400">→</div>
+                  <div className="bg-green-100 p-4 rounded-lg text-center">
+                    <div className="text-2xl mb-2">🧠</div>
+                    <p className="text-sm font-medium">AI Processing</p>
+                    <p className="text-xs text-gray-600">ML Algorithm</p>
+                  </div>
+                  <div className="text-2xl text-gray-400">→</div>
+                  <div className="bg-purple-100 p-4 rounded-lg text-center">
+                    <div className="text-2xl mb-2">📈</div>
+                    <p className="text-sm font-medium">Risk Assessment</p>
+                    <p className="text-xs text-gray-600">Prediction Result</p>
+                  </div>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Performance</h4>
-                <p className="text-sm text-gray-600">94% average accuracy</p>
               </div>
-              <div className="text-center">
-                <div className="bg-cyan-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <Zap className="h-6 w-6 text-cyan-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Processing</h4>
-                <p className="text-sm text-gray-600">Real-time analysis</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

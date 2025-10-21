@@ -355,27 +355,43 @@ export const DiagnosisPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-2">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Progress Indicator */}
-                    <div className="mb-2">
-                      <div className="flex items-center justify-between text-xs text-gray-600 mb-0.5">
-                        <span>Complete assessment</span>
-                        <span>{Object.keys(formData).length}/{disease.fields.length}</span>
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+                        <span className="font-medium">Complete assessment</span>
+                        <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs">
+                          {Object.keys(formData).length}/{disease.fields.length} fields
+                        </span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-1.5">
+                      <div className="w-full bg-gray-200 rounded-full h-2">
                         <div 
-                          className={`bg-gradient-to-r ${disease.color} h-1.5 rounded-full progress-bar`}
+                          className={`bg-gradient-to-r ${disease.color} h-2 rounded-full progress-bar`}
                           style={{ width: `${(Object.keys(formData).length / disease.fields.length) * 100}%` }}
                         ></div>
                       </div>
                     </div>
 
+                    {/* Disease Category Header */}
+                    <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-4 rounded-lg border border-emerald-200 mb-4">
+                      <h3 className="text-lg font-bold text-emerald-800 mb-2 flex items-center">
+                        {disease.name === 'Heart Disease' && '🫀 Heart Parameters'}
+                        {disease.name === 'Liver Disease' && '🧠 Liver Parameters'}
+                        {disease.name === 'Kidney Disease' && '💉 Kidney Parameters'}
+                        {disease.name === 'Diabetes' && '🩸 Diabetes Parameters'}
+                      </h3>
+                      <p className="text-sm text-emerald-700">
+                        Enter your medical values to get AI-powered health insights
+                      </p>
+                    </div>
+
                     <div className="grid grid-cols-2 gap-3">
                       {disease.fields.slice(0, 6).map((field, index) => (
                         <div key={index} className="space-y-1">
-                          <label className="form-label text-sm">
+                          <label className="form-label text-sm flex items-center">
                             {field.label}
                             <span className="text-red-500 ml-1">*</span>
+                            <Info className="h-4 w-4 text-blue-500 ml-2 cursor-help" title={`Click for more info about ${field.label}`} />
                           </label>
                           {field.type === 'select' ? (
                             <select
@@ -447,7 +463,7 @@ export const DiagnosisPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full py-4 px-4 btn-gradient rounded-lg font-semibold text-center transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm min-h-[48px] flex items-center justify-center"
+                      className="w-full py-4 px-6 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg font-semibold text-center transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-base min-h-[48px] flex items-center justify-center"
                     >
                       {isLoading ? (
                         <div className="flex items-center justify-center">
@@ -468,11 +484,13 @@ export const DiagnosisPage: React.FC = () => {
           ) : (
             <div className="space-y-8">
               {/* AI Diagnosis Summary */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                <p className="text-blue-800 text-sm font-medium text-center">
-                  <strong>AI Analysis Complete:</strong> This is not a medical diagnosis. 
-                  Please consult a qualified healthcare provider for proper medical evaluation and treatment.
-                </p>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                <div className="text-center">
+                  <h3 className="text-lg font-bold text-blue-900 mb-2">Prediction Result: {result.risk} Risk of {disease.name}</h3>
+                  <p className="text-blue-800 text-sm font-medium">
+                    <strong>AI Analysis Complete:</strong> This is a predictive result. Please consult a doctor for professional confirmation.
+                  </p>
+                </div>
               </div>
 
               {/* Enhanced Results with Medical Cards */}
@@ -485,10 +503,17 @@ export const DiagnosisPage: React.FC = () => {
                       <AlertCircle className={`h-12 w-12 ${result.risk === 'Moderate' ? 'text-yellow-600' : 'text-red-600'} mr-4`} />
                     )}
                     <div>
-                      <h2 className="medical-header">
-                        Risk Level: <span className={result.risk === 'Low' ? 'text-green-600' : result.risk === 'Moderate' ? 'text-yellow-600' : 'text-red-600'}>{result.risk}</span>
-                      </h2>
-                      <p className="text-gray-600 text-lg">AI Confidence: {result.confidence}%</p>
+            <h2 className="medical-header">
+              Risk Level: <span className={result.risk === 'Low' ? 'text-green-600' : result.risk === 'Moderate' ? 'text-yellow-600' : 'text-red-600'}>{result.risk}</span>
+            </h2>
+            <div className="flex items-center space-x-4">
+              <p className="text-gray-600 text-lg">Model Confidence: <span className="font-bold text-emerald-600">{result.confidence}%</span></p>
+              <div className="flex items-center">
+                {result.risk === 'Low' && <span className="text-2xl">🟢</span>}
+                {result.risk === 'Moderate' && <span className="text-2xl">🟡</span>}
+                {result.risk === 'High' && <span className="text-2xl">🔴</span>}
+              </div>
+            </div>
                       <div className="mt-2">
                         {result.risk === 'Low' && (
                           <p className="text-green-700 text-sm font-medium">
@@ -593,6 +618,12 @@ export const DiagnosisPage: React.FC = () => {
                 >
                   <img src={photoUrl} alt={`${disease.name} photo`} className="h-5 w-5 mr-2 rounded-full object-cover" />
                   Take Another Assessment
+                </button>
+                <button
+                  onClick={() => navigate('/')}
+                  className="flex-1 py-4 px-6 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors btn-center"
+                >
+                  ← Go Back to Home
                 </button>
               </div>
 
