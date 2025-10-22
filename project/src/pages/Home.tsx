@@ -163,7 +163,7 @@ const Home: React.FC = () => {
               </span>
             </h1>
             <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mb-6">
-              Smart Health Prediction for Kidney, Liver, Heart, and Diabetes Diseases
+              This AI-powered medical diagnosis system helps people assess risks for Kidney, Liver, Heart, and Diabetes.
             </h2>
             <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mb-8 max-w-4xl mx-auto">
               <p className="text-emerald-800 text-base font-medium leading-relaxed">
@@ -173,10 +173,10 @@ const Home: React.FC = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link
-                to="/diagnosis/heart"
+                to="/login"
                 className="btn-gradient px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg min-h-[48px] flex items-center justify-center"
               >
-                Begin Health Check
+                Get Started
               </Link>
               <Link
                 to="/doctors"
@@ -430,13 +430,15 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      
+
       {/* Developer Information Footer */}
       <section className="py-8 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
             <h3 className="text-xl font-bold mb-2">Final Year Project</h3>
             <p className="text-emerald-100 mb-4">
-              Developed by <strong>Vishnu Rajoli</strong> - AI-Powered Medical Diagnosis System
+              Developed by <strong>Vishnu Vardan Reddy Rajoli</strong>, Final Year Project, Parul University
             </p>
             <p className="text-sm text-emerald-200">
               This project demonstrates the application of Machine Learning in healthcare for educational purposes

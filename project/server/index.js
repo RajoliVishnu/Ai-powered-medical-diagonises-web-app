@@ -33,7 +33,7 @@ app.get('/api/health', (_req, res) => {
   res.json({ 
     ok: true, 
     service: 'MediCare AI Backend', 
-    version: '1.0.0',
+    version: '2.0.0',
     theme: 'Medical Professional',
     colors: {
       primary: '#059669',
@@ -132,26 +132,33 @@ app.use('/api/prescriptions', prescriptionsRouter);
 app.use('/api/diagnosis', diagnosisRouter);
 app.use('/api/system', systemRouter);
 
-// Serve static frontend (built files in ../dist)
+// Serve static frontend (built files in ../dist) - only in production
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const clientDistPath = path.resolve(__dirname, '..', 'dist');
-app.use(express.static(clientDistPath));
 
-// SPA fallback for non-API GET requests
-app.get('/', (req, res) => {
-  console.log('🔄 Serving frontend for root path');
-  res.sendFile(path.join(clientDistPath, 'index.html'));
-});
+// Only serve static files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(clientDistPath));
+  
+  // SPA fallback for non-API GET requests
+  app.get('/', (req, res) => {
+    console.log('🔄 Serving frontend for root path');
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
 
-// Catch-all for other routes (excluding API)
-app.get('/*', (req, res) => {
-  if (req.path.startsWith('/api')) {
-    return res.status(404).json({ error: 'API endpoint not found' });
-  }
-  console.log('🔄 Serving frontend for:', req.path);
-  res.sendFile(path.join(clientDistPath, 'index.html'));
-});
+  // Catch-all for other routes (excluding API)
+  app.get('/*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ error: 'API endpoint not found' });
+    }
+    console.log('🔄 Serving frontend for:', req.path);
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+} else {
+  // Development mode - just serve API routes
+  console.log('🔧 Development mode: Frontend served by Vite dev server');
+}
 
 // Global error handler
 app.use((err, _req, res, _next) => {
@@ -159,7 +166,7 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Internal Server Error' });
 });
 
-const PORT = process.env.PORT ? Number(process.env.PORT) : 5000;
+const PORT = process.env.PORT || 5000;
 
 await initDatabase();
 

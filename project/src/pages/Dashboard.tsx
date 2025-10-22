@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CreditCard, Calendar, FileText, Pill, CheckCircle, DollarSign, TrendingUp, Users, Shield, Activity, Clock } from 'lucide-react';
+import RealTimeSimulator from '../components/RealTimeSimulator';
 
 interface DashboardStats {
   totalAppointments: number;
@@ -298,6 +299,13 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Real-Time AI Processing Simulation */}
+      <div className="mt-8">
+        <RealTimeSimulator />
+      </div>
+
+      
     </div>
   );
 };

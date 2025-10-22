@@ -61,31 +61,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Medical Disclaimer */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold flex items-center">
-              <Shield className="h-5 w-5 text-emerald-400 mr-2" />
-              Important Notice
-            </h3>
-            <div className="space-y-3 text-xs text-gray-300">
-              <div className="p-3 bg-red-900/20 border border-red-500/30 rounded-lg">
-                <div className="flex items-start">
-                  <AlertTriangle className="h-4 w-4 text-red-400 mr-2 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold text-red-300 mb-1">Medical Disclaimer</p>
-                    <p className="text-red-200">
-                      This AI system is for educational purposes only and should not replace professional medical advice.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
-                <p className="text-red-200 font-semibold text-center">
-                  ⚠️ This project is for educational and demonstration purposes only. It does not provide medical advice. Always consult a healthcare professional for actual diagnosis.
-                </p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
 

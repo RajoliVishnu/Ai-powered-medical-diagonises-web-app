@@ -1,12 +1,12 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Backend for medical diagnosis app",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js",
+    "start": "npx kill-port 5000 && node index.js",
+    "dev": "npx kill-port 5000 && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,5 +22,8 @@
     "morgan": "^1.10.1",
     "nanoid": "^5.1.5",
     "stripe": "^14.25.0"
+  },
+  "devDependencies": {
+    "kill-port": "^2.0.1"
   }
 }

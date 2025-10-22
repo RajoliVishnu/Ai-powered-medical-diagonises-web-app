@@ -35,7 +35,7 @@ const AboutPage: React.FC = () => {
       disease: 'Heart Disease',
       algorithm: 'Random Forest Classifier',
       accuracy: '95.2%',
-      dataset: 'UCI Heart Disease Dataset',
+      dataset: 'UCI Heart Disease Dataset (Kaggle)',
       features: '13 clinical parameters',
       icon: Heart,
       color: 'from-red-500 to-pink-500'
@@ -44,7 +44,7 @@ const AboutPage: React.FC = () => {
       disease: 'Liver Disease',
       algorithm: 'Support Vector Machine',
       accuracy: '93.8%',
-      dataset: 'Indian Liver Patient Dataset',
+      dataset: 'Indian Liver Patient Dataset (Kaggle)',
       features: '10 liver function parameters',
       icon: Heart,
       color: 'from-orange-500 to-yellow-500'
@@ -53,7 +53,7 @@ const AboutPage: React.FC = () => {
       disease: 'Kidney Disease',
       algorithm: 'Neural Network (MLP)',
       accuracy: '94.5%',
-      dataset: 'Chronic Kidney Disease Dataset',
+      dataset: 'Chronic Kidney Disease Dataset (UCI)',
       features: '24 clinical attributes',
       icon: Heart,
       color: 'from-blue-500 to-cyan-500'
@@ -62,7 +62,7 @@ const AboutPage: React.FC = () => {
       disease: 'Diabetes',
       algorithm: 'Logistic Regression',
       accuracy: '92.1%',
-      dataset: 'Pima Indians Diabetes Dataset',
+      dataset: 'Pima Indians Diabetes Dataset (UCI)',
       features: '8 physiological parameters',
       icon: Heart,
       color: 'from-green-500 to-emerald-500'
@@ -335,6 +335,8 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      
     </div>
   );
 };

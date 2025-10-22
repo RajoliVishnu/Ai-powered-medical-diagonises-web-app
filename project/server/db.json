@@ -6,6 +6,21 @@
       "email": "2203031241100@paruluniversity.ac.in",
       "passwordHash": "$2b$10$3NdpwuKSluKhOj2gWhWVyuT4UZB59AXN..ahVaEf/GdylP5HeHi16",
       "createdAt": "2025-10-21T06:38:46.173Z"
+    },
+    {
+      "id": "vxlZyDVgnn24L3x40sXxn",
+      "name": "narendra",
+      "email": "pavankathi749@gmail.com",
+      "passwordHash": "$2b$10$pMK2FecFlWEiZYJUc1lV5empO74h5Pva/ERtTGGmKNs5FH3x1M/f.",
+      "theme": "Medical Professional",
+      "improvements": {
+        "ui": "Medical color theme with emerald, teal, and cyan",
+        "validation": "Enhanced form validation with helpful hints",
+        "results": "Color-coded user status cards",
+        "documentation": "Comprehensive project documentation",
+        "ethics": "Medical disclaimers and safety warnings"
+      },
+      "createdAt": "2025-10-22T09:00:01.441Z"
     }
   ],
   "appointments": [],

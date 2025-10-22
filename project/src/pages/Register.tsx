@@ -56,7 +56,7 @@ const Register: React.FC = () => {
           src="https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=1200"
           alt="Medical team"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/70 via-emerald-900/50 to-blue-900/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 via-emerald-900/60 to-blue-900/80"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-8 max-w-lg">
             <div className="mb-8">
@@ -89,8 +89,8 @@ const Register: React.FC = () => {
       </div>
 
       {/* Right side - Registration form */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-md w-full space-y-8">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 relative z-10 min-h-screen">
+        <div className="max-w-lg w-full space-y-8 bg-white bg-opacity-95 shadow-2xl rounded-3xl py-12 px-8 md:py-14 md:px-12 flex flex-col justify-center min-h-[560px]">
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="relative">
@@ -106,18 +106,17 @@ const Register: React.FC = () => {
             </p>
           </div>
 
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="card-gradient p-8 rounded-3xl shadow-modern-lg">
+          <form className="mt-10 space-y-8" onSubmit={handleSubmit}>
+            <div>
               {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 flex items-center">
                   <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                   {error}
                 </div>
               )}
-
-              <div className="space-y-6">
+              <div className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2 text-left">
                     Full name
                   </label>
                   <div className="relative group">
@@ -129,14 +128,13 @@ const Register: React.FC = () => {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/60 backdrop-blur-sm"
                       placeholder="Enter your full name"
                     />
                   </div>
                 </div>
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2 text-left">
                     Email address
                   </label>
                   <div className="relative group">
@@ -148,14 +146,13 @@ const Register: React.FC = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/60 backdrop-blur-sm"
                       placeholder="Enter your email"
                     />
                   </div>
                 </div>
-
                 <div>
-                  <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2 text-left">
                     Password
                   </label>
                   <div className="relative group">
@@ -167,7 +164,7 @@ const Register: React.FC = () => {
                       type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="block w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      className="block w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/60 backdrop-blur-sm"
                       placeholder="Create a password"
                     />
                     <button
@@ -183,9 +180,8 @@ const Register: React.FC = () => {
                     </button>
                   </div>
                 </div>
-
                 <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2 text-left">
                     Confirm password
                   </label>
                   <div className="relative group">
@@ -197,17 +193,16 @@ const Register: React.FC = () => {
                       type="password"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      className="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all duration-300 bg-white/60 backdrop-blur-sm"
                       placeholder="Confirm your password"
                     />
                   </div>
                 </div>
               </div>
-
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-4 px-6 rounded-xl text-lg font-semibold text-white bg-gradient-to-r from-green-600 via-emerald-600 to-blue-600 hover:from-green-700 hover:via-emerald-700 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-8"
+                className="w-full flex justify-center py-4 px-6 rounded-xl text-lg font-semibold text-white bg-gradient-to-r from-green-600 via-emerald-600 to-blue-600 hover:from-green-700 hover:via-emerald-700 hover:to-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-10"
               >
                 {isLoading ? (
                   <div className="flex items-center">
@@ -219,7 +214,6 @@ const Register: React.FC = () => {
                 )}
               </button>
             </div>
-
             <div className="text-center mt-6">
               <p className="text-gray-600 font-medium">
                 Already have an account?{' '}

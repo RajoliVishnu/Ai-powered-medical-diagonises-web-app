@@ -13,10 +13,10 @@ const diseaseConfig = {
       { name: 'age', label: 'Age', type: 'number', placeholder: 'Enter your age' },
       { name: 'sex', label: 'Sex', type: 'select', options: ['Male', 'Female'] },
       { name: 'chestPain', label: 'Chest Pain Type', type: 'select', options: ['Typical Angina', 'Atypical Angina', 'Non-anginal Pain', 'Asymptomatic'] },
-      { name: 'restingBP', label: 'Resting Blood Pressure', type: 'select', options: ['Below 120 mmHg', '120-139 mmHg', '140-159 mmHg', '160 mmHg or above', 'Don\'t know'] },
-      { name: 'cholesterol', label: 'Serum Cholesterol', type: 'select', options: ['Below 200 mg/dL', '200-239 mg/dL', '240 mg/dL or above', 'Don\'t know'] },
-      { name: 'fastingBS', label: 'Fasting Blood Sugar > 120 mg/dl', type: 'select', options: ['Yes', 'No', 'Don\'t know'] },
-      { name: 'maxHR', label: 'Maximum Heart Rate', type: 'select', options: ['Below 120 bpm', '120-150 bpm', '151-180 bpm', 'Above 180 bpm', 'Don\'t know - use age estimate'] },
+      { name: 'restingBP', label: 'Resting Blood Pressure (mmHg)', type: 'select', options: ['Below 120 mmHg', '120-139 mmHg', '140-159 mmHg', '160 mmHg or above', 'Don\'t know'] },
+      { name: 'cholesterol', label: 'Serum Cholesterol (mg/dL)', type: 'select', options: ['Below 200 mg/dL', '200-239 mg/dL', '240 mg/dL or above', 'Don\'t know'] },
+      { name: 'fastingBS', label: 'Fasting Blood Sugar (mg/dL)', type: 'select', options: ['Below 120 mg/dL', '120-125 mg/dL', '126 mg/dL or above', 'Don\'t know'] },
+      { name: 'maxHR', label: 'Maximum Heart Rate (bpm)', type: 'select', options: ['Below 120 bpm', '120-150 bpm', '151-180 bpm', 'Above 180 bpm', 'Don\'t know - use age estimate'] },
       { name: 'exerciseAngina', label: 'Exercise Induced Angina', type: 'select', options: ['Yes', 'No'] }
     ]
   },
@@ -27,12 +27,12 @@ const diseaseConfig = {
     fields: [
       { name: 'age', label: 'Age', type: 'number', placeholder: 'Enter your age' },
       { name: 'gender', label: 'Gender', type: 'select', options: ['Male', 'Female'] },
-      { name: 'totalBilirubin', label: 'Total Bilirubin', type: 'select', options: ['Below 1.2 mg/dL', '1.2-2.0 mg/dL', 'Above 2.0 mg/dL', 'Don\'t know'] },
-      { name: 'directBilirubin', label: 'Direct Bilirubin', type: 'select', options: ['Below 0.3 mg/dL', '0.3-0.5 mg/dL', 'Above 0.5 mg/dL', 'Don\'t know'] },
-      { name: 'alkalinePhosphatase', label: 'Alkaline Phosphatase', type: 'select', options: ['Below 120 IU/L', '120-200 IU/L', 'Above 200 IU/L', 'Don\'t know'] },
-      { name: 'alamineAminotransferase', label: 'Alamine Aminotransferase', type: 'select', options: ['Below 40 IU/L', '40-80 IU/L', 'Above 80 IU/L', 'Don\'t know'] },
-      { name: 'aspartateAminotransferase', label: 'Aspartate Aminotransferase', type: 'select', options: ['Below 40 IU/L', '40-80 IU/L', 'Above 80 IU/L', 'Don\'t know'] },
-      { name: 'totalProteins', label: 'Total Proteins', type: 'select', options: ['Below 6.0 g/dL', '6.0-8.0 g/dL', 'Above 8.0 g/dL', 'Don\'t know'] }
+      { name: 'totalBilirubin', label: 'Total Bilirubin (mg/dL)', type: 'select', options: ['Below 1.2 mg/dL', '1.2-2.0 mg/dL', 'Above 2.0 mg/dL', 'Don\'t know'] },
+      { name: 'directBilirubin', label: 'Direct Bilirubin (mg/dL)', type: 'select', options: ['Below 0.3 mg/dL', '0.3-0.5 mg/dL', 'Above 0.5 mg/dL', 'Don\'t know'] },
+      { name: 'alkalinePhosphatase', label: 'Alkaline Phosphatase (IU/L)', type: 'select', options: ['Below 120 IU/L', '120-200 IU/L', 'Above 200 IU/L', 'Don\'t know'] },
+      { name: 'alamineAminotransferase', label: 'Alamine Aminotransferase (IU/L)', type: 'select', options: ['Below 40 IU/L', '40-80 IU/L', 'Above 80 IU/L', 'Don\'t know'] },
+      { name: 'aspartateAminotransferase', label: 'Aspartate Aminotransferase (IU/L)', type: 'select', options: ['Below 40 IU/L', '40-80 IU/L', 'Above 80 IU/L', 'Don\'t know'] },
+      { name: 'totalProteins', label: 'Total Proteins (g/dL)', type: 'select', options: ['Below 6.0 g/dL', '6.0-8.0 g/dL', 'Above 8.0 g/dL', 'Don\'t know'] }
     ]
   },
   kidney: {
@@ -41,13 +41,13 @@ const diseaseConfig = {
     color: 'from-blue-500 to-cyan-500',
     fields: [
       { name: 'age', label: 'Age', type: 'number', placeholder: 'Enter your age' },
-      { name: 'bloodPressure', label: 'Blood Pressure', type: 'select', options: ['Below 120 mmHg', '120-139 mmHg', '140-159 mmHg', '160 mmHg or above', 'Don\'t know'] },
-      { name: 'specificGravity', label: 'Specific Gravity', type: 'select', options: ['1.005-1.010', '1.011-1.020', '1.021-1.030', 'Don\'t know'] },
-      { name: 'albumin', label: 'Albumin', type: 'select', options: ['0', '1', '2', '3', '4', '5'] },
-      { name: 'sugar', label: 'Sugar', type: 'select', options: ['0', '1', '2', '3', '4', '5'] },
-      { name: 'redBloodCells', label: 'Red Blood Cells', type: 'select', options: ['Normal', 'Abnormal'] },
-      { name: 'pusCell', label: 'Pus Cell', type: 'select', options: ['Normal', 'Abnormal'] },
-      { name: 'bloodUrea', label: 'Blood Urea', type: 'select', options: ['Below 20 mg/dL', '20-40 mg/dL', 'Above 40 mg/dL', 'Don\'t know'] }
+      { name: 'bloodPressure', label: 'Blood Pressure (mmHg)', type: 'select', options: ['Below 120 mmHg', '120-139 mmHg', '140-159 mmHg', '160 mmHg or above', 'Don\'t know'] },
+      { name: 'specificGravity', label: 'Specific Gravity (urine)', type: 'select', options: ['1.005-1.010', '1.011-1.020', '1.021-1.030', 'Don\'t know'] },
+      { name: 'albumin', label: 'Albumin (0-5 scale)', type: 'select', options: ['0', '1', '2', '3', '4', '5'] },
+      { name: 'sugar', label: 'Sugar (0-5 scale)', type: 'select', options: ['0', '1', '2', '3', '4', '5'] },
+      { name: 'redBloodCells', label: 'Red Blood Cells (urine)', type: 'select', options: ['Normal', 'Abnormal'] },
+      { name: 'pusCell', label: 'Pus Cell (urine)', type: 'select', options: ['Normal', 'Abnormal'] },
+      { name: 'bloodUrea', label: 'Blood Urea (mg/dL)', type: 'select', options: ['Below 20 mg/dL', '20-40 mg/dL', 'Above 40 mg/dL', 'Don\'t know'] }
     ]
   },
   diabetes: {
@@ -56,11 +56,11 @@ const diseaseConfig = {
     color: 'from-green-500 to-emerald-500',
     fields: [
       { name: 'pregnancies', label: 'Number of Pregnancies', type: 'number', placeholder: 'Enter number' },
-      { name: 'glucose', label: 'Glucose Level', type: 'select', options: ['Below 100 mg/dL', '100-125 mg/dL', '126 mg/dL or above', 'Don\'t know'] },
-      { name: 'bloodPressure', label: 'Blood Pressure', type: 'select', options: ['Below 120 mmHg', '120-139 mmHg', '140-159 mmHg', '160 mmHg or above', 'Don\'t know'] },
-      { name: 'skinThickness', label: 'Skin Thickness', type: 'select', options: ['Below 20 mm', '20-30 mm', 'Above 30 mm', 'Don\'t know'] },
-      { name: 'insulin', label: 'Insulin Level', type: 'select', options: ['Below 100 mu U/ml', '100-200 mu U/ml', 'Above 200 mu U/ml', 'Don\'t know'] },
-      { name: 'bmi', label: 'BMI', type: 'select', options: ['Below 25', '25-30', 'Above 30', 'Don\'t know'] },
+      { name: 'glucose', label: 'Glucose Level (mg/dL)', type: 'select', options: ['Below 100 mg/dL', '100-125 mg/dL', '126 mg/dL or above', 'Don\'t know'] },
+      { name: 'bloodPressure', label: 'Blood Pressure (mmHg)', type: 'select', options: ['Below 120 mmHg', '120-139 mmHg', '140-159 mmHg', '160 mmHg or above', 'Don\'t know'] },
+      { name: 'skinThickness', label: 'Skin Thickness (mm)', type: 'select', options: ['Below 20 mm', '20-30 mm', 'Above 30 mm', 'Don\'t know'] },
+      { name: 'insulin', label: 'Insulin Level (mu U/ml)', type: 'select', options: ['Below 100 mu U/ml', '100-200 mu U/ml', 'Above 200 mu U/ml', 'Don\'t know'] },
+      { name: 'bmi', label: 'BMI (kg/m²)', type: 'select', options: ['Below 25', '25-30', 'Above 30', 'Don\'t know'] },
       { name: 'diabetesPedigree', label: 'Diabetes Pedigree Function', type: 'select', options: ['Below 0.5', '0.5-1.0', 'Above 1.0', 'Don\'t know'] },
       { name: 'age', label: 'Age', type: 'number', placeholder: 'Enter your age' }
     ]
@@ -634,13 +634,13 @@ export const DiagnosisPage: React.FC = () => {
                   className="flex-1 py-4 px-6 border-2 border-emerald-300 text-emerald-700 rounded-lg font-semibold hover:bg-emerald-50 transition-colors btn-center"
                 >
                   <img src={photoUrl} alt={`${disease.name} photo`} className="h-5 w-5 mr-2 rounded-full object-cover" />
-                  Take Another Assessment
+                  Test Again
                 </button>
                 <button
                   onClick={() => navigate('/')}
                   className="flex-1 py-4 px-6 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors btn-center"
                 >
-                  ← Go Back to Home
+                  ← Go Home
                 </button>
               </div>
 
@@ -752,13 +752,7 @@ export const DiagnosisPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Disclaimer */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                <p className="text-sm text-yellow-800">
-                  <strong>Disclaimer:</strong> This AI assessment is for informational purposes only and should not replace professional medical advice. 
-                  Please consult with a qualified healthcare provider for proper diagnosis and treatment.
-                </p>
-              </div>
+              
             </div>
           )}
         </div>

@@ -138,19 +138,6 @@ const Login: React.FC = () => {
                   Register here
                 </Link>
               </p>
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-blue-800 text-sm">
-                  <strong>Demo Login:</strong> Use any email and password to test the system
-                </p>
-              </div>
-            </div>
-
-            {/* Medical Disclaimer */}
-            <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <p className="text-yellow-800 text-sm text-center">
-                <strong>Medical Disclaimer:</strong> This application is for educational purposes only and does not replace professional medical advice. 
-                Always consult with qualified healthcare providers for proper diagnosis and treatment.
-              </p>
             </div>
           </form>
         </div>
