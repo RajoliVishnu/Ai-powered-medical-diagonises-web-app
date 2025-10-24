@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, Clover as Liver, LucideKey as Kidney, Droplets, ArrowLeft, CheckCircle, AlertCircle, Users, Award, Star, Pill, Info } from 'lucide-react';
+import LoadingCard from '../components/LoadingCard';
+import Alert from '../components/Alert';
 import GuidedDiagnosisForm from '../components/GuidedDiagnosisForm';
 import ReportGenerator from '../components/ReportGenerator';
 
@@ -108,6 +110,7 @@ export const DiagnosisPage: React.FC = () => {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [apiError, setApiError] = useState<string>('');
   const [result, setResult] = useState<{ 
     risk: string; 
     confidence: number; 
@@ -157,6 +160,7 @@ export const DiagnosisPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setApiError('');
 
     try {
       // Get auth token
@@ -210,12 +214,15 @@ export const DiagnosisPage: React.FC = () => {
         
         console.log('✅ AI Diagnosis completed successfully');
       } else {
-        console.error('❌ Diagnosis API failed:', await response.text());
+        const errorText = await response.text();
+        console.error('❌ Diagnosis API failed:', errorText);
+        setApiError('Failed to get diagnosis. Please try again.');
         // Fallback to mock data if API fails
         await handleMockDiagnosis();
       }
     } catch (error) {
       console.error('❌ Diagnosis error:', error);
+      setApiError('Network error. Using offline analysis.');
       // Fallback to mock data if API fails
       await handleMockDiagnosis();
     }
@@ -291,7 +298,17 @@ export const DiagnosisPage: React.FC = () => {
   const photoUrl = diseasePhotos[(diseaseId as string) || 'heart'] || diseasePhotos.heart;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      {/* Loading Overlay */}
+      {isLoading && (
+        <LoadingCard 
+          title="Analyzing Your Health Data"
+          subtitle="Our AI is processing your information to provide accurate insights"
+          showProgress={true}
+          progress={75}
+        />
+      )}
+
       <div className="max-w-5xl mx-auto px-2 sm:px-4 py-2">
         <Link
           to="/"
@@ -301,7 +318,19 @@ export const DiagnosisPage: React.FC = () => {
           Back to Home
         </Link>
 
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+          {/* API Error Alert */}
+          {apiError && (
+            <div className="p-4">
+              <Alert 
+                type="warning" 
+                title="Connection Issue" 
+                message={apiError}
+                onClose={() => setApiError('')}
+              />
+            </div>
+          )}
+
           {!result ? (
             diseaseId === 'heart' ? (
               <GuidedDiagnosisForm onSubmit={handleGuidedFormSubmit} isLoading={isLoading} />
@@ -389,7 +418,7 @@ export const DiagnosisPage: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
-                      {disease.fields.slice(0, 6).map((field, index) => (
+                      {disease.fields.map((field, index) => (
                         <div key={index} className="space-y-1">
                           <label className="form-label text-sm flex items-center">
                             {field.label}
@@ -497,7 +526,7 @@ export const DiagnosisPage: React.FC = () => {
               </div>
 
               {/* Enhanced Results with Medical Cards */}
-              <div className={`medical-card ${result.risk === 'Low' ? 'medical-success' : result.risk === 'Moderate' ? 'medical-warning' : 'medical-danger'}`}>
+              <div className={`medical-card ${result.risk === 'Low' ? 'medical-success' : result.risk === 'Moderate' ? 'medical-warning' : 'medical-danger'}`} data-testid="diagnosis-results">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     {result.risk === 'Low' ? (

@@ -24,7 +24,49 @@
     }
   ],
   "appointments": [],
-  "records": [],
+  "records": [
+    {
+      "id": "0r-iWferxyl-nzutxijTI",
+      "userId": "vxlZyDVgnn24L3x40sXxn",
+      "diseaseType": "heart",
+      "formData": {},
+      "prediction": {
+        "risk": "Moderate",
+        "confidence": 95,
+        "recommendations": [
+          "Consult with a healthcare provider within 2 weeks for detailed evaluation",
+          "Consider lifestyle modifications including diet and exercise changes",
+          "Schedule regular monitoring and follow-up appointments monthly",
+          "Consider preventive medications as recommended by your doctor"
+        ],
+        "doctorRecommendations": [
+          {
+            "name": "Dr. Sarah Johnson",
+            "specialty": "Cardiologist",
+            "rating": 4.9,
+            "experience": "15 years"
+          },
+          {
+            "name": "Dr. Lisa Thompson",
+            "specialty": "Interventional Cardiologist",
+            "rating": 4.8,
+            "experience": "10 years"
+          }
+        ],
+        "timestamp": "2025-10-24T04:12:05.570Z",
+        "diseaseType": "heart"
+      },
+      "theme": "Medical Professional",
+      "improvements": {
+        "ui": "Medical color theme (emerald, teal, cyan)",
+        "validation": "Enhanced form validation with helpful hints",
+        "results": "Color-coded risk assessment cards",
+        "documentation": "Comprehensive project documentation",
+        "ethics": "Medical disclaimers and safety warnings"
+      },
+      "createdAt": "2025-10-24T04:12:05.575Z"
+    }
+  ],
   "prescriptions": [],
   "payments": []
 }

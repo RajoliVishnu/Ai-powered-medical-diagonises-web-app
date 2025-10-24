@@ -754,9 +754,9 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Form Fields - Show only first 6 fields */}
+                {/* Form Fields - Show all fields */}
                 <div className="grid grid-cols-2 gap-2">
-                  {disease.fields.slice(0, 6).map((field, index) => renderField(field, index))}
+                  {disease.fields.map((field, index) => renderField(field, index))}
                 </div>
 
                 {/* Submit Button */}
@@ -783,7 +783,7 @@ const ComprehensiveDiagnosisPage: React.FC = () => {
             ) : (
               <div className="space-y-8">
                 {/* Enhanced Results */}
-                <div className={`p-8 rounded-xl ${result.risk === 'Low' ? 'bg-green-50 border-2 border-green-200' : result.risk === 'Moderate' ? 'bg-yellow-50 border-2 border-yellow-200' : 'bg-red-50 border-2 border-red-200'}`}>
+                <div className={`p-8 rounded-xl ${result.risk === 'Low' ? 'bg-green-50 border-2 border-green-200' : result.risk === 'Moderate' ? 'bg-yellow-50 border-2 border-yellow-200' : 'bg-red-50 border-2 border-red-200'}`} data-testid="diagnosis-results">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center">
                       {result.risk === 'Low' ? (

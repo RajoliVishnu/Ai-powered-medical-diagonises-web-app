@@ -1,11 +1,12 @@
 // React import not needed with the new JSX transform
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import { PaymentProvider } from './contexts/PaymentContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './contexts/AuthContext';
+import { PaymentProvider } from './contexts/PaymentContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
@@ -25,9 +26,15 @@ import DiseasePrescriptionsPage from './pages/DiseasePrescriptionsPage';
 import { Toaster } from 'react-hot-toast';
 import TransactionHistory from './components/TransactionHistory';
 import StatusPage from './pages/StatusPage';
-import Footer from './components/Footer';
 import SystemDashboard from './pages/SystemDashboard';
-import NotificationCenter from './components/NotificationCenter';
+import Footer from './components/Footer';
+// import EHRSystem from './pages/EHRSystem';
+import ImageAnalysisPage from './pages/ImageAnalysisPage';
+import SymptomCheckerPage from './pages/SymptomCheckerPage';
+import EnhancedPaymentPage from './pages/EnhancedPaymentPage';
+import SMSNotificationSystem from './pages/SMSNotificationSystem';
+import VideoConsultationPage from './pages/VideoConsultationPage';
+import EHRSystem from './pages/EHRSystem';
 
 // Define proper interfaces for the data
 interface MedicalRecord {
@@ -61,11 +68,12 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 
 
 function App() {
   return (
-    <AuthProvider>
-      <PaymentProvider>
-        <Router>
-          <div className="min-h-screen bg-gray-50">
-            <Navbar />
+    <ThemeProvider>
+      <AuthProvider>
+        <PaymentProvider>
+          <Router>
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+              <Navbar />
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -84,6 +92,30 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              {/* <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfilePage />
+                  </ProtectedRoute>
+                }
+              /> */}
+              <Route
+                path="/image-analysis"
+                element={
+                  <ProtectedRoute>
+                    <ImageAnalysisPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/symptom-checker"
+                element={
+                  <ProtectedRoute>
+                    <SymptomCheckerPage />
                   </ProtectedRoute>
                 }
               />
@@ -142,6 +174,40 @@ function App() {
                     <Elements stripe={stripePromise}>
                       <SubscriptionPage />
                     </Elements>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/payment"
+                element={
+                  <ProtectedRoute>
+                    <Elements stripe={stripePromise}>
+                      <EnhancedPaymentPage />
+                    </Elements>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/sms-notifications"
+                element={
+                  <ProtectedRoute>
+                    <SMSNotificationSystem />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/video-consultation/:consultationId"
+                element={
+                  <ProtectedRoute>
+                    <VideoConsultationPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/ehr"
+                element={
+                  <ProtectedRoute>
+                    <EHRSystem />
                   </ProtectedRoute>
                 }
               />
@@ -290,6 +356,7 @@ function App() {
         </Router>
       </PaymentProvider>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 

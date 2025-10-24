@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Heart, User, LogOut, Home, Stethoscope, Menu, X, Phone, CreditCard, Info, Users, Shield, Calendar, FileText, Pill, ChevronDown } from 'lucide-react';
+import { Heart, User, LogOut, Home, Stethoscope, Menu, X, Phone, CreditCard, Info, Users, Shield, Calendar, FileText, Pill, ChevronDown, Camera, Search, MessageSquare, Video } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import NotificationCenter from './NotificationCenter';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
@@ -28,12 +29,18 @@ const Navbar: React.FC = () => {
   const mainNavigationItems = [
     { path: '/', label: 'Home', icon: Home, description: 'Main page' },
     { path: '/dashboard', label: 'Dashboard', icon: Users, description: 'Your health overview' },
+    { path: '/profile', label: 'Profile', icon: User, description: 'Manage your profile' },
     { path: '/diseases', label: 'Health Check', icon: Heart, description: 'Check your health' },
   ];
 
   const servicesNavigationItems = [
     { path: '/doctors', label: 'Find Doctors', icon: Stethoscope, description: 'Consult specialists' },
     { path: '/appointments', label: 'Appointments', icon: Calendar, description: 'Schedule consultations' },
+    { path: '/video-consultation/consult_123', label: 'Video Consultation', icon: Video, description: 'Join video call with doctor' },
+    { path: '/image-analysis', label: 'Image Analysis', icon: Camera, description: 'Analyze X-rays and scans' },
+    { path: '/symptom-checker', label: 'Symptom Checker', icon: Search, description: 'AI-powered symptom analysis' },
+    { path: '/sms-notifications', label: 'SMS Notifications', icon: MessageSquare, description: 'Manage SMS alerts' },
+    { path: '/ehr', label: 'EHR System', icon: FileText, description: 'Electronic health records' },
     { path: '/medical-records', label: 'Medical Records', icon: FileText, description: 'View your history' },
     { path: '/prescriptions', label: 'Prescriptions', icon: Pill, description: 'Manage medications' },
     { path: '/disease-prescriptions', label: 'Disease Prescriptions', icon: FileText, description: 'View by condition' },
@@ -49,7 +56,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="bg-white/80 backdrop-blur-md shadow-lg border-b border-blue-100 sticky top-0 z-40">
+      <nav className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-lg border-b border-blue-100 dark:border-gray-700 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             {/* Logo */}
@@ -62,7 +69,7 @@ const Navbar: React.FC = () => {
                   <span className="text-xl font-extrabold font-display bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     MediCare AI
                   </span>
-                  <div className="text-xs text-gray-500">Healthcare for Everyone</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Healthcare for Everyone</div>
                 </div>
               </Link>
             </div>
@@ -89,7 +96,7 @@ const Navbar: React.FC = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-                  className="flex flex-col items-center px-3 py-2 rounded-lg text-xs text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+                  className="flex flex-col items-center px-3 py-2 rounded-lg text-xs text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-all duration-200"
                 >
                   <Stethoscope className="h-5 w-5 mb-1" />
                   <div className="flex items-center">
@@ -99,7 +106,7 @@ const Navbar: React.FC = () => {
                 </button>
 
                 {isServicesDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-white/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50 max-h-[70vh] overflow-auto">
                     {servicesNavigationItems.map((item) => (
                       <Link
                         key={item.path}
@@ -107,14 +114,14 @@ const Navbar: React.FC = () => {
                         onClick={() => setIsServicesDropdownOpen(false)}
                         className={`flex items-center px-4 py-3 text-sm transition-colors ${
                           isActive(item.path)
-                            ? 'bg-blue-50 text-blue-700'
-                            : 'text-gray-700 hover:bg-gray-50'
+                            ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                         }`}
                       >
                         <item.icon className="w-4 h-4 mr-3" />
                         <div>
                           <div className="font-medium">{item.label}</div>
-                          <div className="text-xs text-gray-500">{item.description}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
                         </div>
                       </Link>
                     ))}
@@ -141,6 +148,9 @@ const Navbar: React.FC = () => {
 
             {/* User Menu & Mobile Menu Button */}
             <div className="flex items-center space-x-2">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+              
               {user ? (
                 <>
                   {/* Notification Center */}
@@ -202,24 +212,24 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white/90 backdrop-blur-md border-t border-gray-200 shadow-lg">
+          <div className="lg:hidden bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 shadow-lg">
             <div className="px-4 py-3 space-y-1">
               {user ? (
                 <>
                   {/* User Info - Mobile */}
-                  <div className="flex items-center space-x-3 px-3 py-3 bg-gray-50 rounded-lg mb-3">
+                  <div className="flex items-center space-x-3 px-3 py-3 bg-gray-50 dark:bg-gray-700 rounded-lg mb-3">
                     <div className="bg-blue-100 p-2 rounded-full">
                       <User className="h-5 w-5 text-blue-600" />
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">{user.name}</div>
-                      <div className="text-gray-500 text-sm">Welcome back!</div>
+                      <div className="font-medium text-gray-900 dark:text-white">{user.name}</div>
+                      <div className="text-gray-500 dark:text-gray-400 text-sm">Welcome back!</div>
                     </div>
                   </div>
 
                   {/* Main Navigation Items - Mobile */}
                   <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">Main</h3>
+                    <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-3">Main</h3>
                     {mainNavigationItems.map((item) => (
                       <Link
                         key={item.path}
@@ -227,14 +237,14 @@ const Navbar: React.FC = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
                           isActive(item.path)
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                            ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400'
                         }`}
                       >
                         <item.icon className="h-5 w-5" />
                         <div>
                           <div className="font-medium">{item.label}</div>
-                          <div className="text-xs text-gray-500">{item.description}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
                         </div>
                       </Link>
                     ))}
@@ -242,7 +252,7 @@ const Navbar: React.FC = () => {
 
                   {/* Services Navigation Items - Mobile */}
                   <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">Services</h3>
+                    <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-3">Services</h3>
                     {servicesNavigationItems.map((item) => (
                       <Link
                         key={item.path}
@@ -250,14 +260,14 @@ const Navbar: React.FC = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
                           isActive(item.path)
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                            ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400'
                         }`}
                       >
                         <item.icon className="h-5 w-5" />
                         <div>
                           <div className="font-medium">{item.label}</div>
-                          <div className="text-xs text-gray-500">{item.description}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
                         </div>
                       </Link>
                     ))}
@@ -265,7 +275,7 @@ const Navbar: React.FC = () => {
 
                   {/* Other Navigation Items - Mobile */}
                   <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">Other</h3>
+                    <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-3">Other</h3>
                     {otherNavigationItems.map((item) => (
                       <Link
                         key={item.path}
@@ -273,14 +283,14 @@ const Navbar: React.FC = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
                           isActive(item.path)
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                            ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400'
                         }`}
                       >
                         <item.icon className="h-5 w-5" />
                         <div>
                           <div className="font-medium">{item.label}</div>
-                          <div className="text-xs text-gray-500">{item.description}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
                         </div>
                       </Link>
                     ))}

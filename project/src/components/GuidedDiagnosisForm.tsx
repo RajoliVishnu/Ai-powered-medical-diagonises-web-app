@@ -271,7 +271,7 @@ const GuidedDiagnosisForm: React.FC<GuidedDiagnosisFormProps> = ({ onSubmit, isL
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            {fields.slice(0, 6).map((field, index) => renderField(field, index))}
+            {fields.map((field, index) => renderField(field, index))}
           </div>
 
           <div className="pt-2 border-t border-gray-200">

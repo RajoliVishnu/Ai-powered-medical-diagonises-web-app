@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Search, FileText, Calendar, User, Activity, Eye } from 'lucide-react';
+import PDFExport from './PDFExport';
 
 interface MedicalRecord {
   id: string;
@@ -199,16 +200,26 @@ const EnhancedMedicalRecords: React.FC<EnhancedMedicalRecordsProps> = ({
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Medical Records</h2>
-          <p className="text-gray-600 mt-1">Manage and track your complete medical history</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Medical Records</h2>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Manage and track your complete medical history</p>
         </div>
-        <button
-          onClick={() => setShowAddForm(true)}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <Plus className="w-5 h-5 mr-2" />
-          Add Record
-        </button>
+        <div className="flex items-center space-x-3">
+          <PDFExport 
+            records={records.map(record => ({
+              ...record,
+              date: record.date.toISOString()
+            }))}
+            patientName="Current User"
+            patientEmail="user@example.com"
+          />
+          <button
+            onClick={() => setShowAddForm(true)}
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus className="w-5 h-5 mr-2" />
+            Add Record
+          </button>
+        </div>
       </div>
 
       {/* Search Bar */}
