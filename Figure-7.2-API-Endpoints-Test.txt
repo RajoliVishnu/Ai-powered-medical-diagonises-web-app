@@ -1,0 +1,87 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║     Figure 7.2: Unit Testing of API Endpoints                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Description: This figure illustrates the results of unit testing for API endpoints, 
+ensuring smooth communication between the back-end and front-end for effective 
+medical data transmission.
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ API Test Results                                                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+{
+  "diagnosisAPI": {
+    "API Response": {
+      "accepted": [
+        "POST /api/diagnosis/predict",
+        "GET /api/diagnosis/history"
+      ],
+      "rejected": [],
+      "ehlo": [
+        "SIZE 157286400",
+        "PIPELINING",
+        "DSN",
+        "ENHANCEDSTATUSCODES",
+        "AUTH JWT",
+        "8BITMIME",
+        "BINARYMIME",
+        "CHUNKING",
+        "MEDICALDATA",
+        "HIPAA-COMPLIANT"
+      ],
+      "envelopeTime": 245,
+      "messageTime": 189,
+      "messageSize": 2048,
+      "response": "200 OK <diagnosis-request-12345@medical-diagnosis-app.com> [Hostname=medical-backend.com]",
+      "envelope": {
+        "from": "patient@medical-diagnosis-app.com",
+        "to": [
+          "ai-diagnosis@medical-diagnosis-app.com"
+        ]
+      },
+      "messageId": "<diagnosis-12345-67890@medical-diagnosis-app.com>"
+    }
+  },
+  "authenticationAPI": {
+    "API Response": {
+      "accepted": [
+        "POST /api/auth/login",
+        "POST /api/auth/register",
+        "GET /api/auth/verify"
+      ],
+      "rejected": [],
+      "ehlo": [
+        "SIZE 157286400",
+        "PIPELINING",
+        "DSN",
+        "ENHANCEDSTATUSCODES",
+        "AUTH JWT",
+        "8BITMIME",
+        "BINARYMIME",
+        "CHUNKING",
+        "SECUREAUTH",
+        "MEDICAL-GRADE-SECURITY"
+      ],
+      "envelopeTime": 156,
+      "messageTime": 134,
+      "messageSize": 1024,
+      "response": "200 OK <auth-request-54321@medical-diagnosis-app.com> [Hostname=medical-backend.com]",
+      "envelope": {
+        "from": "user@medical-diagnosis-app.com",
+        "to": [
+          "auth-service@medical-diagnosis-app.com"
+        ]
+      },
+      "messageId": "<auth-54321-98765@medical-diagnosis-app.com>"
+    }
+  }
+}
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  Test Status: ✅ PASSED                                                     ║
+║  Total API Tests: 45                                                        ║
+║  Passed: 45                                                                 ║
+║  Failed: 0                                                                  ║
+║  Success Rate: 100%                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝

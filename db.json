@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "f-aAZrddQNMRzFRzxLOsD",
+      "name": "Test User",
+      "email": "test@example.com",
+      "passwordHash": "$2b$10$2lTCJhP.ATNni3qMbZTjXubq9UFX3mZVQar8zhhbHp29QQmtVtarK",
+      "createdAt": "2025-08-21T10:12:18.086Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "-dlj3q2c-m8JzWsZYKgeK",
+      "userId": "f-aAZrddQNMRzFRzxLOsD",
+      "doctorName": "Dr Who",
+      "scheduledAt": "2025-09-01T10:00:00Z",
+      "reason": "Check",
+      "status": "scheduled",
+      "createdAt": "2025-08-21T10:12:18.171Z"
+    }
+  ],
+  "records": [],
+  "prescriptions": [],
+  "payments": []
+}
