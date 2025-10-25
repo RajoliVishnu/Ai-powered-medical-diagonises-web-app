@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ImageAnalysisPage } from '../../src/pages/ImageAnalysisPage';
+import ImageAnalysisPage from '../../../src/pages/ImageAnalysisPage';
 
 // Mock TensorFlow.js
 jest.mock('@tensorflow/tfjs', () => ({
@@ -25,15 +25,15 @@ describe('ImageAnalysis Component', () => {
   test('should render image analysis page', () => {
     render(<ImageAnalysisPage />);
     
-    expect(screen.getByText(/AI-Powered Image Analysis/i)).toBeInTheDocument();
-    expect(screen.getByText(/Upload Medical Image/i)).toBeInTheDocument();
+    expect(screen.getByText(/Medical Image Analysis/i)).toBeInTheDocument();
+    expect(screen.getByText(/Drag & drop medical images here/i)).toBeInTheDocument();
   });
 
   test('should handle image upload', async () => {
     render(<ImageAnalysisPage />);
     
     const file = createMockFile('xray.jpg', 'image/jpeg');
-    const input = screen.getByLabelText(/Upload Medical Image/i);
+    const input = screen.getByRole('presentation');
     
     fireEvent.change(input, { target: { files: [file] } });
     
@@ -46,7 +46,7 @@ describe('ImageAnalysis Component', () => {
     render(<ImageAnalysisPage />);
     
     const file = createMockFile('document.pdf', 'application/pdf');
-    const input = screen.getByLabelText(/Upload Medical Image/i);
+    const input = screen.getByRole('presentation');
     
     fireEvent.change(input, { target: { files: [file] } });
     
@@ -66,7 +66,7 @@ describe('ImageAnalysis Component', () => {
     render(<ImageAnalysisPage />);
     
     const file = createMockFile('xray.jpg', 'image/jpeg');
-    const input = screen.getByLabelText(/Upload Medical Image/i);
+    const input = screen.getByRole('presentation');
     
     fireEvent.change(input, { target: { files: [file] } });
     

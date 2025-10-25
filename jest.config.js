@@ -18,5 +18,14 @@ export default {
   },
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
+  },
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        jsx: 'react-jsx',
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true
+      }
+    }
   }
 };
