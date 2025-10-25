@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "2.0.0",
+  "description": "Backend for medical diagnosis app",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx kill-port 5000 && node index.js",
+    "dev": "npx kill-port 5000 && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "lowdb": "^7.0.1",
+    "morgan": "^1.10.1",
+    "nanoid": "^5.1.5",
+    "stripe": "^14.25.0"
+  },
+  "devDependencies": {
+    "kill-port": "^2.0.1"
+  }
+}

@@ -1,0 +1,32 @@
+services:
+  # Frontend Service (React/Vite)
+  - type: web
+    name: medical-diagnosis-frontend
+    env: node
+    buildCommand: cd project && npm install && npm run build
+    startCommand: cd project && npm run preview
+    staticPublishPath: ./project/dist
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_URL
+        value: https://medical-diagnosis-backend.onrender.com
+
+  # Backend Service (Express/Node.js)
+  - type: web
+    name: medical-diagnosis-backend
+    env: node
+    buildCommand: cd project/server && npm install
+    startCommand: cd project/server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DATABASE_URL
+        value: postgresql://username:password@hostname:port/database
+      - key: JWT_SECRET
+        value: your-jwt-secret-key-here
+      - key: CORS_ORIGIN
+        value: https://medical-diagnosis-frontend.onrender.com
+
