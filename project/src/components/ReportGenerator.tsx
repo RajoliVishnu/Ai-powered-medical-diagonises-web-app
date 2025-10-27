@@ -39,7 +39,7 @@ const ReportGenerator: React.FC<ReportGeneratorProps> = ({ reportData, onGenerat
       for (const selector of selectors) {
         const element = document.querySelector(selector);
         console.log(`Checking selector: ${selector}, found:`, element);
-        if (element && element.offsetHeight > 0 && element.offsetWidth > 0) {
+        if (element && (element as HTMLElement).offsetHeight > 0 && (element as HTMLElement).offsetWidth > 0) {
           resultsContainer = element;
           console.log(`Found results container with selector: ${selector}`, element);
           break;

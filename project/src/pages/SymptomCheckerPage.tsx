@@ -58,7 +58,7 @@ const SymptomCheckerPage: React.FC = () => {
     { id: 'confusion', name: 'Confusion', category: 'Neurological', severity: 'severe' },
     { id: 'numbness', name: 'Numbness/Tingling', category: 'Neurological', severity: 'moderate' },
     { id: 'weakness', name: 'Muscle Weakness', category: 'Neurological', severity: 'moderate' },
-    { id: 'seizures', name: 'Seizures', category: 'Neurological', severity: 'emergency' },
+    { id: 'seizures', name: 'Seizures', category: 'Neurological', severity: 'severe' },
     
     // Gastrointestinal
     { id: 'abdominal-pain', name: 'Abdominal Pain', category: 'Gastrointestinal', severity: 'moderate' },
@@ -350,7 +350,7 @@ const SymptomCheckerPage: React.FC = () => {
                 {filteredSymptoms.map((symptom) => (
                   <button
                     key={symptom.id}
-                    onClick={() => addSymptom(symptom)}
+                    onClick={() => addSymptom(symptom as Symptom)}
                     disabled={selectedSymptoms.some(s => s.id === symptom.id)}
                     className="w-full text-left p-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >

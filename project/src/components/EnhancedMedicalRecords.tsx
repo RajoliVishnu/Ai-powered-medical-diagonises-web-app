@@ -207,7 +207,13 @@ const EnhancedMedicalRecords: React.FC<EnhancedMedicalRecordsProps> = ({
           <PDFExport 
             records={records.map(record => ({
               ...record,
-              date: record.date.toISOString()
+              date: record.date.toISOString(),
+              type: (record.type === 'consultation' || record.type === 'prescription') 
+                ? record.type 
+                : 'consultation' as 'consultation' | 'prescription',
+              status: (record.status === 'completed' || record.status === 'pending' || record.status === 'cancelled')
+                ? record.status
+                : 'completed' as 'completed' | 'pending' | 'cancelled'
             }))}
             patientName="Current User"
             patientEmail="user@example.com"

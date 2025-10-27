@@ -5,7 +5,7 @@ import { CreditCard, Lock, CheckCircle, AlertCircle, Download, Calendar, User, P
 import Alert from '../components/Alert';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_your_key_here');
+const stripePromise = loadStripe('pk_test_your_key_here');
 
 interface PaymentFormProps {
   amount: number;
@@ -88,9 +88,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
       if (selectedSavedMethod) {
         // Use saved payment method
         paymentIntent = await stripe.confirmPayment({
-          payment_method: selectedSavedMethod,
-          confirm: true,
-          return_url: window.location.origin + '/payment-success'
+          elements,
+          confirmParams: {
+            payment_method: selectedSavedMethod,
+            return_url: window.location.origin + '/payment-success'
+          }
         });
       } else {
         // Use new payment method

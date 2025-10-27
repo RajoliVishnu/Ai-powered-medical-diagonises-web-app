@@ -438,11 +438,16 @@ const DoctorsPage: React.FC = () => {
 
         {/* Call Interface */}
         {showCallInterface && selectedDoctor && (
-          <CallInterface
-            doctor={selectedDoctor}
-            callType={callType}
-            onEndCall={handleEndCall}
-          />
+            <CallInterface
+              onCallEnd={handleEndCall}
+              onToggleMute={() => {}}
+              onToggleVideo={() => {}}
+              onToggleSpeaker={() => {}}
+              isMuted={false}
+              isVideoOn={callType === 'video'}
+              isSpeakerOn={false}
+              callDuration={0}
+            />
         )}
 
         

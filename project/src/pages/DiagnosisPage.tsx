@@ -423,7 +423,7 @@ export const DiagnosisPage: React.FC = () => {
                           <label className="form-label text-sm flex items-center">
                             {field.label}
                             <span className="text-red-500 ml-1">*</span>
-                            <Info className="h-4 w-4 text-blue-500 ml-2 cursor-help" title={`Click for more info about ${field.label}`} />
+                            <Info className="h-4 w-4 text-blue-500 ml-2 cursor-help" />
                           </label>
                           {field.type === 'select' ? (
                             <select

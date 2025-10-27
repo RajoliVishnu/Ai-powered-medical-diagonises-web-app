@@ -7,7 +7,9 @@ yarn-error.log*
 # Build outputs
 dist/
 build/
+coverage/
 *.log
+*.map
 
 # Env and local
 .env
@@ -22,3 +24,19 @@ vite.svg
 .vscode/
 .idea/
 Thumbs.db
+
+# Test results and artifacts
+test-results-report.json
+Complete-Test-Summary.txt
+Email-Confirmation-*.txt
+Figure-*.txt
+setup-and-send-email.js
+simple-test-demo.js
+view-email.html
+*.json.backup
+
+
+# Temporary files
+*.tmp
+*.temp
+.vishnu/

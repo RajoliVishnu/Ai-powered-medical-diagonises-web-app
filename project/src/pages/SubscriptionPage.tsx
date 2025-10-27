@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import PaymentForm from '../components/PaymentForm';
 import { Check, Star, Users, Shield, Zap, Building2 } from 'lucide-react';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_your_key_here');
+const stripePromise = loadStripe('pk_test_your_key_here');
 
 const SubscriptionPage: React.FC = () => {
   const { plans, currentSubscription, subscribeToPlan, cancelSubscription } = useSubscriptionStore();
