@@ -65,6 +65,91 @@
         "ethics": "Medical disclaimers and safety warnings"
       },
       "createdAt": "2025-10-24T04:12:05.575Z"
+    },
+    {
+      "id": "4I7c8xgsVNRognT6aOf5u",
+      "userId": "vxlZyDVgnn24L3x40sXxn",
+      "diseaseType": "heart",
+      "formData": {},
+      "prediction": {
+        "risk": "Moderate",
+        "confidence": 91,
+        "recommendations": [
+          "Consult with a healthcare provider within 2 weeks for detailed evaluation",
+          "Consider lifestyle modifications including diet and exercise changes",
+          "Schedule regular monitoring and follow-up appointments monthly",
+          "Consider preventive medications as recommended by your doctor"
+        ],
+        "doctorRecommendations": [
+          {
+            "name": "Dr. Sarah Johnson",
+            "specialty": "Cardiologist",
+            "rating": 4.9,
+            "experience": "15 years"
+          },
+          {
+            "name": "Dr. Lisa Thompson",
+            "specialty": "Interventional Cardiologist",
+            "rating": 4.8,
+            "experience": "10 years"
+          }
+        ],
+        "timestamp": "2025-10-27T10:14:42.157Z",
+        "diseaseType": "heart"
+      },
+      "theme": "Medical Professional",
+      "improvements": {
+        "ui": "Medical color theme (emerald, teal, cyan)",
+        "validation": "Enhanced form validation with helpful hints",
+        "results": "Color-coded risk assessment cards",
+        "documentation": "Comprehensive project documentation",
+        "ethics": "Medical disclaimers and safety warnings"
+      },
+      "createdAt": "2025-10-27T10:14:42.165Z"
+    },
+    {
+      "id": "gA2jI5lOngBulQnKXwdOU",
+      "userId": "vxlZyDVgnn24L3x40sXxn",
+      "diseaseType": "kidney",
+      "formData": {
+        "age": "57",
+        "bloodPressure": "120-139 mmHg",
+        "specificGravity": "1.011-1.020",
+        "albumin": "2",
+        "redBloodCells": "Abnormal",
+        "bloodUrea": "20-40 mg/dL",
+        "pusCell": "Normal",
+        "sugar": "2"
+      },
+      "prediction": {
+        "risk": "Low",
+        "confidence": 95,
+        "recommendations": [
+          "Maintain a healthy lifestyle with regular exercise (30 minutes daily)",
+          "Continue with balanced diet rich in fruits and vegetables",
+          "Schedule routine check-ups every 6 months",
+          "Monitor your health parameters regularly"
+        ],
+        "doctorRecommendations": [
+          {
+            "name": "Dr. Emily Rodriguez",
+            "specialty": "Nephrologist",
+            "rating": 4.9,
+            "experience": "18 years"
+          }
+        ],
+        "timestamp": "2025-10-27T10:17:50.864Z",
+        "diseaseType": "kidney"
+      },
+      "theme": "Medical Professional",
+      "improvements": {
+        "ui": "Medical color theme (emerald, teal, cyan)",
+        "validation": "Enhanced form validation with helpful hints",
+        "results": "Color-coded risk assessment cards",
+        "documentation": "Comprehensive project documentation",
+        "ethics": "Medical disclaimers and safety warnings"
+      },
+      "createdAt": "2025-10-27T10:17:50.864Z"
     }
   ],
   "prescriptions": [],
