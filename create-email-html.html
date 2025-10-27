@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integration Test Confirmation - Medical Diagnosis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .test-results {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .test-item:last-child {
+            border-bottom: none;
+        }
+        .test-step {
+            font-weight: 500;
+            color: #333;
+        }
+        .test-status {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .test-time {
+            color: #666;
+            font-size: 14px;
+        }
+        .confirmation-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .confirmation-box h2 {
+            margin: 0 0 15px 0;
+            color: #2e7d32;
+            font-size: 20px;
+        }
+        .info-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #c8e6c9;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            width: 150px;
+        }
+        .info-value {
+            color: #333;
+        }
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box p {
+            margin: 5px 0;
+            color: #856404;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .success-badge {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>✅ Integration Test Confirmation</h1>
+            <p>Medical Diagnosis Platform - All Tests Passed Successfully</p>
+        </div>
+
+        <div class="content">
+            <div class="confirmation-box">
+                <h2>🎉 Medical Diagnosis Completed</h2>
+                <div class="info-row">
+                    <span class="info-label">To:</span>
+                    <span class="info-value">vishnuvardan308@gmail.com</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">From:</span>
+                    <span class="info-value">medical-diagnosis@ai-system.com</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Subject:</span>
+                    <span class="info-value">Medical Diagnosis Completed Successfully</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Patient:</span>
+                    <span class="info-value">Test User</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Diagnosis:</span>
+                    <span class="info-value">Cardiovascular Disease Risk Assessment</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Risk Level:</span>
+                    <span class="info-value">Medium <span class="success-badge">75% Confidence</span></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Record ID:</span>
+                    <span class="info-value">DIAG-2025-10-25-12345</span>
+                </div>
+            </div>
+
+            <div class="test-results">
+                <h3 style="margin-top: 0; color: #333;">📊 Integration Test Results</h3>
+                <div class="test-item">
+                    <span class="test-step">Step 1: User Registration</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">120ms</span>
+                </div>
+                <div class="test-item">
+                    <span class="test-step">Step 2: User Authentication</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">89ms</span>
+                </div>
+                <div class="test-item">
+                    <span class="test-step">Step 3: Medical Form Submission</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">156ms</span>
+                </div>
+                <div class="test-item">
+                    <span class="test-step">Step 4: AI Diagnosis Processing</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">2.3s</span>
+                </div>
+                <div class="test-item">
+                    <span class="test-step">Step 5: Results Display</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">45ms</span>
+                </div>
+                <div class="test-item">
+                    <span class="test-step">Step 6: Medical Record Storage</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">78ms</span>
+                </div>
+                <div class="test-item">
+                    <span class="test-step">Step 7: PDF Report Generation</span>
+                    <span class="test-status">✅ Passed</span>
+                    <span class="test-time">1.2s</span>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>ℹ️ Important Notice:</strong></p>
+                <p>Your complete medical record has been saved securely in our database. You can access it anytime from your dashboard.</p>
+                <p><strong>⚠️ This is an AI-assisted diagnosis for informational purposes only. Please consult with a healthcare professional for proper medical advice.</strong></p>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://medical-diagnosis-app.com/results" style="background-color: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">View Your Results</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="margin: 0;">AI-Powered Medical Diagnosis Platform</p>
+            <p style="margin: 5px 0;">© 2025 | Integration Testing Confirmation</p>
+            <p style="margin: 5px 0;">Sent to: vishnuvardan308@gmail.com</p>
+        </div>
+    </div>
+</body>
+</html>

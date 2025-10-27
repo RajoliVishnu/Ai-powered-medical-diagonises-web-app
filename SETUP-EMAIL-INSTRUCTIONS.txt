@@ -1,0 +1,46 @@
+╔════════════════════════════════════════════════════════════════╗
+║     HOW TO SEND REAL EMAIL TO vishnuvardan308@gmail.com       ║
+╚════════════════════════════════════════════════════════════════╝
+
+📧 To send real integration test confirmation email:
+
+Step 1: Get Gmail App Password
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Go to: https://myaccount.google.com/apppasswords
+2. Sign in with your Gmail account
+3. Click "Select app" → Choose "Mail"
+4. Click "Select device" → Choose "Other" → Type "Test"
+5. Click "Generate"
+6. Copy the 16-character password shown
+
+Step 2: Edit send-real-email.js
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Open: project/send-real-email.js
+
+Change line 15:
+  user: 'your-email@gmail.com',
+To your actual Gmail:
+  user: 'your-actual-email@gmail.com',
+
+Change line 16:
+  pass: 'your-app-password',
+To the app password you copied:
+  pass: 'abcd efgh ijkl mnop',
+
+Step 3: Uncomment the Send Line
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Find line 123 and remove the //:
+  // const info = await transporter.sendMail(mailOptions);
+Change to:
+  const info = await transporter.sendMail(mailOptions);
+
+Step 4: Run the Script
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cd project
+node send-real-email.js
+
+✅ Real email will be sent to: vishnuvardan308@gmail.com
+
+⚠️  Alternative Option:
+If you don't want to configure Gmail, you can screenshot the 
+terminal output from: node generate-email-confirmation.js

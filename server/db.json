@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": "eTlQdjM9PYC7tUq1haAAZ",
+      "name": "vishnu",
+      "email": "2203031241100@paruluniversity.ac.in",
+      "passwordHash": "$2b$10$3NdpwuKSluKhOj2gWhWVyuT4UZB59AXN..ahVaEf/GdylP5HeHi16",
+      "createdAt": "2025-10-21T06:38:46.173Z"
+    },
+    {
+      "id": "vxlZyDVgnn24L3x40sXxn",
+      "name": "narendra",
+      "email": "pavankathi749@gmail.com",
+      "passwordHash": "$2b$10$pMK2FecFlWEiZYJUc1lV5empO74h5Pva/ERtTGGmKNs5FH3x1M/f.",
+      "theme": "Medical Professional",
+      "improvements": {
+        "ui": "Medical color theme with emerald, teal, and cyan",
+        "validation": "Enhanced form validation with helpful hints",
+        "results": "Color-coded user status cards",
+        "documentation": "Comprehensive project documentation",
+        "ethics": "Medical disclaimers and safety warnings"
+      },
+      "createdAt": "2025-10-22T09:00:01.441Z"
+    }
+  ],
+  "appointments": [],
+  "records": [
+    {
+      "id": "0r-iWferxyl-nzutxijTI",
+      "userId": "vxlZyDVgnn24L3x40sXxn",
+      "diseaseType": "heart",
+      "formData": {},
+      "prediction": {
+        "risk": "Moderate",
+        "confidence": 95,
+        "recommendations": [
+          "Consult with a healthcare provider within 2 weeks for detailed evaluation",
+          "Consider lifestyle modifications including diet and exercise changes",
+          "Schedule regular monitoring and follow-up appointments monthly",
+          "Consider preventive medications as recommended by your doctor"
+        ],
+        "doctorRecommendations": [
+          {
+            "name": "Dr. Sarah Johnson",
+            "specialty": "Cardiologist",
+            "rating": 4.9,
+            "experience": "15 years"
+          },
+          {
+            "name": "Dr. Lisa Thompson",
+            "specialty": "Interventional Cardiologist",
+            "rating": 4.8,
+            "experience": "10 years"
+          }
+        ],
+        "timestamp": "2025-10-24T04:12:05.570Z",
+        "diseaseType": "heart"
+      },
+      "theme": "Medical Professional",
+      "improvements": {
+        "ui": "Medical color theme (emerald, teal, cyan)",
+        "validation": "Enhanced form validation with helpful hints",
+        "results": "Color-coded risk assessment cards",
+        "documentation": "Comprehensive project documentation",
+        "ethics": "Medical disclaimers and safety warnings"
+      },
+      "createdAt": "2025-10-24T04:12:05.575Z"
+    }
+  ],
+  "prescriptions": [],
+  "payments": []
+}
